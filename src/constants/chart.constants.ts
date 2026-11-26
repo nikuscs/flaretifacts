@@ -1,0 +1,90 @@
+import { MOTION } from '@/constants/motion.constants';
+
+export const CHART = {
+  palette: ['var(--series-1)', 'var(--series-2)', 'var(--series-3)', 'var(--series-4)'],
+  neutral: [56, 42, 32],
+  locale: 'en',
+  line: {
+    height: 220,
+    top: 12,
+    gap: 14,
+    axisSpacing: 76,
+    dotRadius: 4,
+    rows: 4,
+    morphSteps: 240,
+    curveSamples: 192,
+    maxSegmentSamples: 16,
+  },
+  sparkline: {
+    width: 160,
+    height: 52,
+    inset: 5,
+    cap: 1.25,
+    lead: 16,
+    grid: 160,
+    inView: 0.5,
+    dot: { rest: 7, active: 10 },
+    draw: { duration: MOTION.duration.considered * 1.75, ease: MOTION.ease.inOut },
+    quick: { duration: MOTION.duration.fast, ease: MOTION.ease.standard },
+  },
+  gauge: {
+    radius: 42,
+    start: -135,
+    span: 270,
+    stroke: 9,
+    capFade: 0.02,
+    tones: {
+      default: '[--gauge:var(--foreground)]',
+      success: '[--gauge:var(--success)]',
+      destructive: '[--gauge:var(--destructive)]',
+    },
+    reveal: { ...MOTION.spring.smooth, visualDuration: MOTION.duration.considered * 1.6 },
+  },
+  usageMeter: {
+    gap: 2,
+    warnAt: 0.9,
+    stagger: MOTION.stagger.line,
+    free: 'free',
+    empty: 'color-mix(in oklab, var(--foreground) 7%, var(--muted))',
+    digits: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    blur: MOTION.blur.subtle,
+    reveal: { visualDuration: 0.58, bounce: 0 },
+    marker: { duration: MOTION.duration.fast, ease: MOTION.ease.standard },
+    column: {
+      initial: { width: 0, opacity: 0 },
+      animate: { width: 'auto', opacity: 1 },
+      exit: { width: 0, opacity: 0 },
+    },
+    pop: {
+      hidden: { opacity: 0, scale: 0.6, filter: 'blur(3px)' },
+      shown: {
+        opacity: 1,
+        scale: 1,
+        filter: 'blur(0px)',
+        transition: {
+          ...MOTION.spring.snappy,
+          opacity: { duration: MOTION.duration.fast, ease: MOTION.ease.enter },
+          filter: { duration: MOTION.duration.fast, ease: MOTION.ease.enter },
+        },
+      },
+      gone: { opacity: 0, scale: 0.6, filter: 'blur(3px)', transition: { duration: MOTION.duration.instant, ease: MOTION.ease.standard } },
+    },
+    fade: {
+      hidden: { opacity: 0, scale: 1, filter: 'blur(0px)' },
+      shown: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: MOTION.duration.fast } },
+      gone: { opacity: 0, scale: 1, filter: 'blur(0px)', transition: { duration: MOTION.duration.instant } },
+    },
+  },
+  textSwap: {
+    rise: {
+      hidden: (direction: number) => ({ opacity: 0, y: `${0.3 * direction}em`, filter: `blur(${MOTION.blur.soft}px)` }),
+      shown: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: MOTION.duration.standard, ease: MOTION.ease.enter } },
+      gone: (direction: number) => ({ opacity: 0, y: `${-0.3 * direction}em`, filter: `blur(${MOTION.blur.subtle}px)`, transition: { duration: MOTION.duration.fast, ease: MOTION.ease.standard } }),
+    },
+    fade: {
+      hidden: { opacity: 0, y: 0, filter: 'blur(0px)' },
+      shown: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: MOTION.duration.instant } },
+      gone: { opacity: 0, y: 0, filter: 'blur(0px)', transition: { duration: MOTION.duration.instant } },
+    },
+  },
+} as const;

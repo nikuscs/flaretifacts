@@ -1,0 +1,324 @@
+{
+  "name": "project-plan",
+  "title": "Website relaunch",
+  "emoji": "🗓️",
+  "description": "A plan people work in: progress, a checklist and notes that save, milestones and risks. Start here for plans, launches, trips and to-do pages.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "progressRow",
+          "tasksCard",
+          "row",
+          "notesCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "badges"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Plan, owners and dates. Tick tasks as they are done; the page saves them.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "badges": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "sm"
+        },
+        "children": [
+          "phase",
+          "due"
+        ]
+      },
+      "phase": {
+        "type": "Badge",
+        "props": {
+          "text": "🔨 Build phase"
+        },
+        "children": []
+      },
+      "due": {
+        "type": "Badge",
+        "props": {
+          "text": "🚀 Launch 12 Dec",
+          "variant": "outline"
+        },
+        "children": []
+      },
+      "progressRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "overall",
+          "design",
+          "build"
+        ]
+      },
+      "overall": {
+        "type": "Card",
+        "props": {
+          "title": "🚀 Overall"
+        },
+        "children": [
+          "overallGauge"
+        ]
+      },
+      "overallGauge": {
+        "type": "Gauge",
+        "props": {
+          "label": "Done",
+          "value": {
+            "$state": "/progress/overall"
+          },
+          "max": 100,
+          "unit": "%",
+          "status": "On track",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "design": {
+        "type": "Card",
+        "props": {
+          "title": "🧱 Workstreams"
+        },
+        "children": [
+          "pDesign",
+          "pBuild",
+          "pContent"
+        ]
+      },
+      "pDesign": {
+        "type": "Progress",
+        "props": {
+          "label": "Design",
+          "value": {
+            "$state": "/progress/design"
+          }
+        },
+        "children": []
+      },
+      "pBuild": {
+        "type": "Progress",
+        "props": {
+          "label": "Build",
+          "value": {
+            "$state": "/progress/build"
+          }
+        },
+        "children": []
+      },
+      "pContent": {
+        "type": "Progress",
+        "props": {
+          "label": "Content",
+          "value": {
+            "$state": "/progress/content"
+          },
+          "hint": "Waiting on product copy"
+        },
+        "children": []
+      },
+      "build": {
+        "type": "Card",
+        "props": {
+          "title": "📌 Details"
+        },
+        "children": [
+          "details"
+        ]
+      },
+      "details": {
+        "type": "KeyValue",
+        "props": {
+          "items": [
+            {
+              "label": "Owner",
+              "value": "Ana"
+            },
+            {
+              "label": "Budget",
+              "value": "€18,000"
+            },
+            {
+              "label": "Started",
+              "value": "2 Oct 2026"
+            },
+            {
+              "label": "Launch",
+              "value": "12 Dec 2026"
+            }
+          ]
+        },
+        "children": []
+      },
+      "tasksCard": {
+        "type": "Card",
+        "props": {
+          "title": "✅ This week",
+          "description": "Ticks are saved for everyone"
+        },
+        "children": [
+          "tasks"
+        ]
+      },
+      "tasks": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/tasks"
+          }
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "timelineCard",
+          "risksCard"
+        ]
+      },
+      "timelineCard": {
+        "type": "Card",
+        "props": {
+          "title": "🏁 Milestones"
+        },
+        "children": [
+          "timeline"
+        ]
+      },
+      "timeline": {
+        "type": "Timeline",
+        "props": {
+          "label": "Milestones",
+          "events": [
+            {
+              "day": "October",
+              "time": "2 Oct",
+              "title": "Kick-off",
+              "tone": "success"
+            },
+            {
+              "day": "October",
+              "time": "24 Oct",
+              "title": "Designs approved",
+              "tone": "success"
+            },
+            {
+              "day": "November",
+              "time": "28 Nov",
+              "title": "Content complete"
+            },
+            {
+              "day": "December",
+              "time": "12 Dec",
+              "title": "Launch"
+            }
+          ]
+        },
+        "children": []
+      },
+      "risksCard": {
+        "type": "Card",
+        "props": {
+          "title": "🚦 Status"
+        },
+        "children": [
+          "s1",
+          "s2",
+          "risk"
+        ]
+      },
+      "s1": {
+        "type": "Status",
+        "props": {
+          "label": "Design",
+          "state": "success",
+          "description": "Signed off"
+        },
+        "children": []
+      },
+      "s2": {
+        "type": "Status",
+        "props": {
+          "label": "Content",
+          "state": "destructive",
+          "description": "Two weeks late"
+        },
+        "children": []
+      },
+      "risk": {
+        "type": "Alert",
+        "props": {
+          "title": "Content may push launch",
+          "description": "Decide by 25 Nov whether to launch with placeholder copy.",
+          "variant": "destructive"
+        },
+        "children": []
+      },
+      "notesCard": {
+        "type": "Card",
+        "props": {
+          "title": "📝 Notes"
+        },
+        "children": [
+          "notes"
+        ]
+      },
+      "notes": {
+        "type": "Notes",
+        "props": {
+          "placeholder": "Decisions, links, anything the team should know",
+          "value": {
+            "$bindState": "/notes"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "progress": {
+        "overall": 62,
+        "design": 100,
+        "build": 55,
+        "content": 30
+      },
+      "tasks": [
+        {
+          "title": "Finish pricing page",
+          "done": true
+        },
+        {
+          "title": "Connect the CMS",
+          "description": "Staging first"
+        },
+        {
+          "title": "Review copy with product"
+        }
+      ]
+    }
+  }
+}

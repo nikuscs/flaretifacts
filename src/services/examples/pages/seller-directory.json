@@ -1,0 +1,818 @@
+{
+  "name": "seller-directory",
+  "title": "Seller directory",
+  "emoji": "🛍️",
+  "description": "A big lookup table: a DataTable of 40 shops whose rows open on click. Short columns stay in the table (seller linked to its store with urlKey, a status badge with tones and emoji, a rating); brands show only on wide screens and what they are good at plus the store link only in the row's panel. The panel also holds blocks for that row: the mentions of that seller, stored once in /mentions as a short { keys, rows } list and joined with where and $item, and a Notes box saved onto the row with $bindItem. Three select filters, pages and KeyNumbers above. Start here for directories, catalogues, vendor or seller lists and any table people search and filter.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "intro",
+          "numbers",
+          "sellersCard"
+        ]
+      },
+      "intro": {
+        "type": "Text",
+        "props": {
+          "text": "Independent vintage and resale shops, checked by hand. Updated 18 Nov. Filter by brand, style or status; best rated first.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "Sellers",
+              "value": {
+                "$state": "/stats/sellers"
+              }
+            },
+            {
+              "label": "Live now",
+              "value": {
+                "$state": "/stats/live"
+              },
+              "context": "🟢 checked this month"
+            },
+            {
+              "label": "Brands",
+              "value": {
+                "$state": "/stats/brands"
+              },
+              "context": "across all shops"
+            },
+            {
+              "label": "Average rating",
+              "value": {
+                "$state": "/stats/rating"
+              },
+              "suffix": "/5"
+            }
+          ]
+        },
+        "children": []
+      },
+      "sellersCard": {
+        "type": "Card",
+        "props": {
+          "title": "🛍️ Sellers",
+          "description": "Search, sort, or filter by brand, style and status"
+        },
+        "children": [
+          "sellers"
+        ]
+      },
+      "sellers": {
+        "type": "DataTable",
+        "props": {
+          "columns": [
+            {
+              "key": "seller",
+              "label": "Seller",
+              "urlKey": "store"
+            },
+            {
+              "key": "brands",
+              "label": "Brands",
+              "show": "wide"
+            },
+            {
+              "key": "style",
+              "label": "Style",
+              "type": "badge",
+              "show": "wide"
+            },
+            {
+              "key": "status",
+              "label": "Status",
+              "type": "badge",
+              "tones": {
+                "🟢 Live": "success",
+                "🔒 Invite only": "warning",
+                "❔ Not checked": "neutral"
+              }
+            },
+            {
+              "key": "rating",
+              "label": "Rating",
+              "type": "number",
+              "decimals": 1,
+              "show": "wide"
+            },
+            {
+              "key": "goodAt",
+              "label": "Good at",
+              "show": "detail"
+            },
+            {
+              "key": "store",
+              "label": "Store",
+              "type": "link",
+              "show": "detail",
+              "copy": true
+            }
+          ],
+          "rows": {
+            "$state": "/sellers"
+          },
+          "filters": [
+            {
+              "key": "brands"
+            },
+            {
+              "key": "style",
+              "options": [
+                {
+                  "value": "Streetwear",
+                  "emoji": "🧢"
+                },
+                {
+                  "value": "Luxury",
+                  "emoji": "💎"
+                },
+                {
+                  "value": "Outdoor",
+                  "emoji": "🏔️"
+                },
+                {
+                  "value": "Basics",
+                  "emoji": "👕"
+                },
+                {
+                  "value": "Sneakers",
+                  "emoji": "👟"
+                }
+              ]
+            },
+            {
+              "key": "status",
+              "options": [
+                "🟢 Live",
+                "🔒 Invite only",
+                "❔ Not checked"
+              ]
+            }
+          ],
+          "sort": {
+            "key": "rating",
+            "direction": "desc"
+          },
+          "pageSize": 20
+        },
+        "children": [
+          "sellerMentions",
+          "sellerNotes"
+        ]
+      },
+      "sellerMentions": {
+        "type": "DataTable",
+        "props": {
+          "title": "What people say",
+          "columns": [
+            {
+              "key": "date",
+              "label": "Date",
+              "type": "date"
+            },
+            {
+              "key": "where",
+              "label": "Where",
+              "type": "badge",
+              "show": "wide"
+            },
+            {
+              "key": "quote",
+              "label": "Quote"
+            }
+          ],
+          "rows": {
+            "$state": "/mentions"
+          },
+          "where": {
+            "seller": {
+              "$item": "seller"
+            }
+          },
+          "search": false,
+          "pageSize": 5,
+          "sort": {
+            "key": "date",
+            "direction": "desc"
+          }
+        },
+        "children": []
+      },
+      "sellerNotes": {
+        "type": "Notes",
+        "props": {
+          "label": "Your notes",
+          "placeholder": "Sizes, prices, what to order next",
+          "value": {
+            "$bindItem": "notes"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "stats": {
+        "sellers": 40,
+        "live": 23,
+        "brands": 14,
+        "rating": 4.2
+      },
+      "sellers": [
+        {
+          "seller": "North Thread",
+          "brands": [
+            "Ralph Lauren"
+          ],
+          "goodAt": "Hiking boots, packs",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 3.9,
+          "store": "https://www.norththread.example/collections/all"
+        },
+        {
+          "seller": "Pine & Pier",
+          "brands": [],
+          "goodAt": "Graphic tees, hoodies",
+          "style": "Streetwear",
+          "status": "🟢 Live",
+          "rating": null,
+          "store": "https://pineandpier.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Studio Kumo",
+          "brands": [
+            "Adidas",
+            "New Balance",
+            "Patagonia"
+          ],
+          "goodAt": null,
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": 3.3,
+          "store": "https://www.studiokumo.example/collections/all"
+        },
+        {
+          "seller": "Atlas Supply",
+          "brands": [
+            "Levi's",
+            "Nike"
+          ],
+          "goodAt": "Hiking boots, packs",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 3.5,
+          "store": "https://atlassupply.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Second Lap",
+          "brands": [],
+          "goodAt": "Rain gear (all sizes)",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": null,
+          "store": "https://www.secondlap.example/collections/all"
+        },
+        {
+          "seller": "Old Harbour Vintage",
+          "brands": [
+            "Adidas",
+            "Lacoste"
+          ],
+          "goodAt": "Fleece and shells",
+          "style": "Outdoor",
+          "status": "🔒 Invite only",
+          "rating": null,
+          "store": "https://oldharbourvintage.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Fieldnotes Store",
+          "brands": [
+            "Nike"
+          ],
+          "goodAt": "Retro basketball",
+          "style": "Sneakers",
+          "status": "🔒 Invite only",
+          "rating": 4.3,
+          "store": "https://www.fieldnotesstore.example/collections/all"
+        },
+        {
+          "seller": "Kiln & Cloth",
+          "brands": [
+            "Levi's"
+          ],
+          "goodAt": "Leather goods",
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": 3.3,
+          "store": "https://www.kilnandcloth.example/collections/all"
+        },
+        {
+          "seller": "Rerun Goods",
+          "brands": [
+            "Adidas",
+            "Barbour",
+            "Lacoste"
+          ],
+          "goodAt": "Fleece and shells",
+          "style": "Outdoor",
+          "status": "❔ Not checked",
+          "rating": 4.9,
+          "store": "https://www.rerungoods.example/collections/all"
+        },
+        {
+          "seller": "Mossgrove",
+          "brands": [
+            "New Balance",
+            "Stone Island",
+            "The North Face"
+          ],
+          "goodAt": null,
+          "style": "Streetwear",
+          "status": "❔ Not checked",
+          "rating": 4.5,
+          "store": "https://www.mossgrove.example/collections/all"
+        },
+        {
+          "seller": "Daybreak Archive",
+          "brands": [],
+          "goodAt": "Waxed jackets",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 4.1,
+          "store": "https://www.daybreakarchive.example/collections/all"
+        },
+        {
+          "seller": "Tidewater Co",
+          "brands": [
+            "Arc'teryx",
+            "Moncler",
+            "Ralph Lauren"
+          ],
+          "goodAt": "Leather goods",
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": null,
+          "store": "https://www.tidewaterco.example/collections/all"
+        },
+        {
+          "seller": "Copper Lane",
+          "brands": [
+            "Moncler",
+            "Nike"
+          ],
+          "goodAt": null,
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": 4.8,
+          "store": "https://copperlane.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Ridge Outfitters",
+          "brands": [],
+          "goodAt": "Leather goods",
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": 4.1,
+          "store": "https://ridgeoutfitters.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Loop Market",
+          "brands": [],
+          "goodAt": "Fleece and shells",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 3.8,
+          "store": "https://loopmarket.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Paper Moon Vintage",
+          "brands": [
+            "Nike",
+            "Ralph Lauren",
+            "Stussy"
+          ],
+          "goodAt": "Selvedge denim",
+          "style": "Basics",
+          "status": "🔒 Invite only",
+          "rating": 3.9,
+          "store": "https://papermoonvintage.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Harbor Street",
+          "brands": [
+            "Carhartt"
+          ],
+          "goodAt": "Polos, tees, sweats",
+          "style": "Basics",
+          "status": "🔒 Invite only",
+          "rating": null,
+          "store": "https://harborstreet.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Grain & Grit",
+          "brands": [
+            "Carhartt",
+            "Patagonia"
+          ],
+          "goodAt": "Waxed jackets",
+          "style": "Outdoor",
+          "status": "❔ Not checked",
+          "rating": null,
+          "store": "https://www.grainandgrit.example/collections/all"
+        },
+        {
+          "seller": "Lowtide Supply",
+          "brands": [
+            "Lacoste"
+          ],
+          "goodAt": "Runners, deadstock pairs",
+          "style": "Sneakers",
+          "status": "❔ Not checked",
+          "rating": 4.0,
+          "store": "https://lowtidesupply.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Wildflower Resale",
+          "brands": [],
+          "goodAt": "Archive pieces (2000s)",
+          "style": "Luxury",
+          "status": "❔ Not checked",
+          "rating": 4.4,
+          "store": "https://www.wildflowerresale.example/collections/all"
+        },
+        {
+          "seller": "Ember Workshop",
+          "brands": [
+            "Levi's"
+          ],
+          "goodAt": "Runners, deadstock pairs",
+          "style": "Sneakers",
+          "status": "🟢 Live",
+          "rating": 3.7,
+          "store": "https://www.emberworkshop.example/collections/all"
+        },
+        {
+          "seller": "Quiet Hours",
+          "brands": [
+            "Barbour",
+            "Levi's"
+          ],
+          "goodAt": "Hiking boots, packs",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 4.1,
+          "store": "https://quiethours.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Saltbox Vintage",
+          "brands": [
+            "Stussy",
+            "The North Face"
+          ],
+          "goodAt": "Leather goods",
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": 3.3,
+          "store": "https://saltboxvintage.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Two Rivers Trading",
+          "brands": [
+            "Arc'teryx"
+          ],
+          "goodAt": null,
+          "style": "Basics",
+          "status": "🟢 Live",
+          "rating": 4.9,
+          "store": "https://www.tworiverstrading.example/collections/all"
+        },
+        {
+          "seller": "Brick & Linen",
+          "brands": [],
+          "goodAt": "Fleece and shells",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 3.6,
+          "store": "https://brickandlinen.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Northbound",
+          "brands": [
+            "Barbour",
+            "New Balance",
+            "Stussy"
+          ],
+          "goodAt": "Chinos and knitwear",
+          "style": "Basics",
+          "status": "🔒 Invite only",
+          "rating": 4.6,
+          "store": "https://northbound.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Hollow Oak",
+          "brands": [
+            "New Balance",
+            "Stussy"
+          ],
+          "goodAt": "Down jackets, knitwear",
+          "style": "Luxury",
+          "status": "🔒 Invite only",
+          "rating": 3.9,
+          "store": "https://hollowoak.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Bluebird Resale",
+          "brands": [
+            "Levi's"
+          ],
+          "goodAt": "Overshirts, cardigans",
+          "style": "Luxury",
+          "status": "❔ Not checked",
+          "rating": 4.4,
+          "store": "https://bluebirdresale.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Canvas Club",
+          "brands": [
+            "Nike"
+          ],
+          "goodAt": "Hiking boots, packs",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 4.5,
+          "store": "https://www.canvasclub.example/collections/all"
+        },
+        {
+          "seller": "Fern & Field",
+          "brands": [
+            "Moncler"
+          ],
+          "goodAt": "Oxford shirts",
+          "style": "Basics",
+          "status": "❔ Not checked",
+          "rating": 4.1,
+          "store": "https://www.fernandfield.example/collections/all"
+        },
+        {
+          "seller": "Stone Path",
+          "brands": [
+            "Moncler",
+            "Ralph Lauren"
+          ],
+          "goodAt": "Rain gear (all sizes)",
+          "style": "Outdoor",
+          "status": "🟢 Live",
+          "rating": 4.0,
+          "store": "https://stonepath.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Little Archive",
+          "brands": [
+            "Nike"
+          ],
+          "goodAt": "Court shoes",
+          "style": "Sneakers",
+          "status": "🟢 Live",
+          "rating": 4.6,
+          "store": "https://littlearchive.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Sunday Rack",
+          "brands": [
+            "Lacoste"
+          ],
+          "goodAt": "Overshirts, cardigans",
+          "style": "Luxury",
+          "status": "🟢 Live",
+          "rating": null,
+          "store": "https://www.sundayrack.example/collections/all"
+        },
+        {
+          "seller": "Maple Yard",
+          "brands": [
+            "Arc'teryx",
+            "Patagonia"
+          ],
+          "goodAt": "Graphic tees, hoodies",
+          "style": "Streetwear",
+          "status": "🟢 Live",
+          "rating": null,
+          "store": "https://mapleyard.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Driftwood Goods",
+          "brands": [
+            "Adidas",
+            "Barbour"
+          ],
+          "goodAt": "Caps and bags",
+          "style": "Streetwear",
+          "status": "🟢 Live",
+          "rating": 3.7,
+          "store": "https://www.driftwoodgoods.example/collections/all"
+        },
+        {
+          "seller": "Cedar Room",
+          "brands": [
+            "The North Face"
+          ],
+          "goodAt": null,
+          "style": "Sneakers",
+          "status": "🟢 Live",
+          "rating": 4.9,
+          "store": "https://www.cedarroom.example/collections/all"
+        },
+        {
+          "seller": "Velvet Hours",
+          "brands": [
+            "Levi's",
+            "Ralph Lauren"
+          ],
+          "goodAt": "Down jackets, knitwear",
+          "style": "Luxury",
+          "status": "🔒 Invite only",
+          "rating": null,
+          "store": "https://velvethours.shop.example/albums?tab=gallery&page=1"
+        },
+        {
+          "seller": "Trailhead Co",
+          "brands": [
+            "Carhartt",
+            "Stone Island",
+            "Stussy"
+          ],
+          "goodAt": "Archive pieces (2000s)",
+          "style": "Luxury",
+          "status": "❔ Not checked",
+          "rating": 4.4,
+          "store": "https://www.trailheadco.example/collections/all"
+        },
+        {
+          "seller": "Old Mill Store",
+          "brands": [
+            "The North Face"
+          ],
+          "goodAt": "Selvedge denim",
+          "style": "Basics",
+          "status": "❔ Not checked",
+          "rating": 5.0,
+          "store": "https://www.oldmillstore.example/collections/all"
+        },
+        {
+          "seller": "Sparrow Vintage",
+          "brands": [
+            "Barbour",
+            "Ralph Lauren"
+          ],
+          "goodAt": "Oxford shirts",
+          "style": "Basics",
+          "status": "❔ Not checked",
+          "rating": null,
+          "store": "https://sparrowvintage.shop.example/albums?tab=gallery&page=1"
+        }
+      ],
+      "mentions": {
+        "keys": [
+          "date",
+          "seller",
+          "where",
+          "quote"
+        ],
+        "rows": [
+          [
+            "2026-11-17",
+            "North Thread",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "North Thread",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-05",
+            "North Thread",
+            "🟠 Reddit",
+            "Sizing runs small, go one up."
+          ],
+          [
+            "2026-11-17",
+            "Pine & Pier",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Pine & Pier",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-17",
+            "Studio Kumo",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Studio Kumo",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-05",
+            "Studio Kumo",
+            "🟠 Reddit",
+            "Sizing runs small, go one up."
+          ],
+          [
+            "2026-11-17",
+            "Atlas Supply",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Atlas Supply",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-17",
+            "Second Lap",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Second Lap",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-05",
+            "Second Lap",
+            "🟠 Reddit",
+            "Sizing runs small, go one up."
+          ],
+          [
+            "2026-11-17",
+            "Old Harbour Vintage",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Old Harbour Vintage",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-17",
+            "Fieldnotes Store",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Fieldnotes Store",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ],
+          [
+            "2026-11-05",
+            "Fieldnotes Store",
+            "🟠 Reddit",
+            "Sizing runs small, go one up."
+          ],
+          [
+            "2026-11-17",
+            "Kiln & Cloth",
+            "🟠 Reddit",
+            "Ordered twice, both arrived in 9 days and matched the photos."
+          ],
+          [
+            "2026-11-12",
+            "Kiln & Cloth",
+            "🟣 Discord",
+            "Fast replies, sent extra photos of the stitching before I paid."
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "name": "weekly-report",
+  "title": "Week 47 report",
+  "emoji": "📰",
+  "description": "A written report: numbers first, a short Markdown summary, two charts and a table. Start here for weekly, monthly or research summaries.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "kpis",
+          "summaryCard",
+          "row",
+          "tableCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "17 to 23 November 2026",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "kpis": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "k1",
+          "k2",
+          "k3"
+        ]
+      },
+      "k1": {
+        "type": "Metric",
+        "props": {
+          "label": "Signups",
+          "value": {
+            "$state": "/signups"
+          },
+          "change": "+29%",
+          "context": "vs week 46"
+        },
+        "children": []
+      },
+      "k2": {
+        "type": "Metric",
+        "props": {
+          "label": "Activation",
+          "value": {
+            "$state": "/activation"
+          },
+          "suffix": "%",
+          "change": "+4 pts"
+        },
+        "children": []
+      },
+      "k3": {
+        "type": "Metric",
+        "props": {
+          "label": "Support tickets",
+          "value": {
+            "$state": "/tickets"
+          },
+          "change": "-12%"
+        },
+        "children": []
+      },
+      "summaryCard": {
+        "type": "Card",
+        "props": {
+          "title": "📝 Summary"
+        },
+        "children": [
+          "summary"
+        ]
+      },
+      "summary": {
+        "type": "Markdown",
+        "props": {
+          "text": "**Good week.** Signups grew on the back of the pricing change, and activation followed.\n\n- The new onboarding cut time to first value from 3 days to 1.\n- Support load fell after the billing fix.\n- Next week: launch the referral programme."
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "signupsCard",
+          "sourcesCard"
+        ]
+      },
+      "signupsCard": {
+        "type": "Card",
+        "props": {
+          "title": "📈 Signups per day"
+        },
+        "children": [
+          "daily"
+        ]
+      },
+      "daily": {
+        "type": "LineChart",
+        "props": {
+          "x": "day",
+          "series": [
+            {
+              "key": "signups",
+              "label": "Signups"
+            }
+          ],
+          "data": {
+            "$state": "/daily"
+          }
+        },
+        "children": []
+      },
+      "sourcesCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧲 Signups by source"
+        },
+        "children": [
+          "sources"
+        ]
+      },
+      "sources": {
+        "type": "SplitBar",
+        "props": {
+          "totalLabel": "Signups",
+          "segments": {
+            "$state": "/sources"
+          }
+        },
+        "children": []
+      },
+      "tableCard": {
+        "type": "Card",
+        "props": {
+          "title": "🚢 Shipped this week"
+        },
+        "children": [
+          "shipped"
+        ]
+      },
+      "shipped": {
+        "type": "Table",
+        "props": {
+          "columns": [
+            {
+              "key": "item",
+              "label": "What"
+            },
+            {
+              "key": "owner",
+              "label": "Who"
+            },
+            {
+              "key": "impact",
+              "label": "Impact"
+            }
+          ],
+          "rows": {
+            "$state": "/shipped"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "signups": 310,
+      "activation": 46,
+      "tickets": 58,
+      "daily": [
+        {
+          "day": "Mon",
+          "signups": 38
+        },
+        {
+          "day": "Tue",
+          "signups": 52
+        },
+        {
+          "day": "Wed",
+          "signups": 47
+        },
+        {
+          "day": "Thu",
+          "signups": 61
+        },
+        {
+          "day": "Fri",
+          "signups": 55
+        },
+        {
+          "day": "Sat",
+          "signups": 29
+        },
+        {
+          "day": "Sun",
+          "signups": 28
+        }
+      ],
+      "sources": [
+        {
+          "label": "Organic",
+          "value": 148
+        },
+        {
+          "label": "Referral",
+          "value": 72
+        },
+        {
+          "label": "Paid",
+          "value": 61
+        },
+        {
+          "label": "Other",
+          "value": 29
+        }
+      ],
+      "shipped": [
+        {
+          "item": "New onboarding",
+          "owner": "Ana",
+          "impact": "Activation +4 pts"
+        },
+        {
+          "item": "Billing fix",
+          "owner": "Liam",
+          "impact": "Tickets -12%"
+        },
+        {
+          "item": "Pricing page",
+          "owner": "Rita",
+          "impact": "Signups +29%"
+        }
+      ]
+    }
+  }
+}

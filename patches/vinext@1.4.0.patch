@@ -1,0 +1,24 @@
+diff --git a/dist/client/dev-error-overlay.js b/dist/client/dev-error-overlay.js
+index 76d070d704bc6cf83ab60c014bc51b36e29a2507..3ad9956f2c24d0a87340f8a84410e730a36f6d57 100644
+--- a/dist/client/dev-error-overlay.js
++++ b/dist/client/dev-error-overlay.js
+@@ -19,12 +19,19 @@ function rememberReported(error) {
+ function alreadyReported(error) {
+ 	return !!error && typeof error === "object" && reportedErrors.has(error);
+ }
++/** Errors thrown by scripts the browser or an extension injects (Brave's wallet, password managers) are not the app's. */
++function isForeignScriptError(event) {
++	const file = event.filename ?? "";
++	if (/^(chrome|safari-web|moz)-extension:|^webkit-masked-url:/.test(file)) return true;
++	return file === "" || file.split("#")[0] === window.location.href.split("#")[0];
++}
+ function installDevErrorOverlay() {
+ 	if (typeof window === "undefined") return;
+ 	installReactRefreshErrorRecovery();
+ 	if (installed) return;
+ 	installed = true;
+ 	window.addEventListener("error", (event) => {
++		if (isForeignScriptError(event)) return;
+ 		const err = event.error;
+ 		if (!err) return;
+ 		if (isNavigationSignalError(err)) return;

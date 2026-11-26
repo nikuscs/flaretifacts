@@ -1,0 +1,344 @@
+{
+  "name": "goals-okrs",
+  "title": "Q1 2027 goals",
+  "emoji": "🎯",
+  "description": "A goals page: the quarter as steps, objectives in an accordion with a progress bar per key result, a confidence gauge and this week's focus as tiles. Start here for OKRs, roadmaps, personal goals and projects with stages.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "stepsCard",
+          "objectivesCard",
+          "row"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "team"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Three objectives, nine key results · check-in every Monday",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "team": {
+        "type": "People",
+        "props": {
+          "layout": "stack",
+          "people": [
+            {
+              "name": "Liam",
+              "role": "Product"
+            },
+            {
+              "name": "Ana",
+              "role": "Engineering"
+            },
+            {
+              "name": "Rita",
+              "role": "Design"
+            },
+            {
+              "name": "Miguel",
+              "role": "Growth"
+            }
+          ]
+        },
+        "children": []
+      },
+      "stepsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧭 Quarter"
+        },
+        "children": [
+          "steps"
+        ]
+      },
+      "steps": {
+        "type": "Steps",
+        "props": {
+          "current": {
+            "$state": "/stage"
+          },
+          "steps": [
+            {
+              "title": "Plan",
+              "description": "Goals agreed"
+            },
+            {
+              "title": "Build",
+              "description": "Weeks 1 to 8"
+            },
+            {
+              "title": "Launch",
+              "description": "Week 9"
+            },
+            {
+              "title": "Review",
+              "description": "Week 13"
+            }
+          ]
+        },
+        "children": []
+      },
+      "objectivesCard": {
+        "type": "Card",
+        "props": {
+          "title": "🎯 Objectives"
+        },
+        "children": [
+          "objectives"
+        ]
+      },
+      "objectives": {
+        "type": "Accordion",
+        "props": {
+          "open": -1,
+          "items": [
+            {
+              "title": "Make onboarding effortless",
+              "icon": "rocket"
+            },
+            {
+              "title": "Grow revenue from teams",
+              "icon": "trending-up"
+            },
+            {
+              "title": "Keep the app fast",
+              "icon": "zap"
+            }
+          ]
+        },
+        "children": [
+          "o1",
+          "o2",
+          "o3"
+        ]
+      },
+      "o1": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "o1act",
+          "o1ttv",
+          "o1tickets"
+        ]
+      },
+      "o1act": {
+        "type": "Progress",
+        "props": {
+          "label": "Activation from 40% to 55%",
+          "value": {
+            "$state": "/kr/act"
+          }
+        },
+        "children": []
+      },
+      "o1ttv": {
+        "type": "Progress",
+        "props": {
+          "label": "Time to first value under 1 day",
+          "value": {
+            "$state": "/kr/ttv"
+          }
+        },
+        "children": []
+      },
+      "o1tickets": {
+        "type": "Progress",
+        "props": {
+          "label": "Support tickets about setup -50%",
+          "value": {
+            "$state": "/kr/tickets"
+          }
+        },
+        "children": []
+      },
+      "o2": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "o2teams",
+          "o2mrr",
+          "o2churn"
+        ]
+      },
+      "o2teams": {
+        "type": "Progress",
+        "props": {
+          "label": "20 new team accounts",
+          "value": {
+            "$state": "/kr/teams"
+          }
+        },
+        "children": []
+      },
+      "o2mrr": {
+        "type": "Progress",
+        "props": {
+          "label": "Team revenue €15k MRR",
+          "value": {
+            "$state": "/kr/mrr"
+          }
+        },
+        "children": []
+      },
+      "o2churn": {
+        "type": "Progress",
+        "props": {
+          "label": "Churn under 2%",
+          "value": {
+            "$state": "/kr/churn"
+          }
+        },
+        "children": []
+      },
+      "o3": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "o3p95",
+          "o3sev",
+          "o3crash"
+        ]
+      },
+      "o3p95": {
+        "type": "Progress",
+        "props": {
+          "label": "p95 page load under 1 s",
+          "value": {
+            "$state": "/kr/p95"
+          }
+        },
+        "children": []
+      },
+      "o3sev": {
+        "type": "Progress",
+        "props": {
+          "label": "Zero sev-1 incidents",
+          "value": {
+            "$state": "/kr/sev"
+          }
+        },
+        "children": []
+      },
+      "o3crash": {
+        "type": "Progress",
+        "props": {
+          "label": "Crash-free sessions 99.8%",
+          "value": {
+            "$state": "/kr/crash"
+          }
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "confidenceCard",
+          "focusCard"
+        ]
+      },
+      "confidenceCard": {
+        "type": "Card",
+        "props": {
+          "title": "💪 Confidence"
+        },
+        "children": [
+          "confidence"
+        ]
+      },
+      "confidence": {
+        "type": "Gauge",
+        "props": {
+          "label": "Will we hit the goals?",
+          "value": {
+            "$state": "/confidence"
+          },
+          "max": 10,
+          "status": "Likely",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "focusCard": {
+        "type": "Card",
+        "props": {
+          "title": "🔦 This week's focus"
+        },
+        "children": [
+          "focus"
+        ]
+      },
+      "focus": {
+        "type": "Features",
+        "props": {
+          "columns": "2",
+          "items": [
+            {
+              "icon": "sparkles",
+              "title": "New welcome flow",
+              "text": "Ship to 50% of signups"
+            },
+            {
+              "icon": "users",
+              "title": "Team invites",
+              "text": "Bulk invite by email"
+            },
+            {
+              "icon": "timer",
+              "title": "Faster dashboard",
+              "text": "Cache the heavy queries"
+            },
+            {
+              "icon": "shield",
+              "title": "On-call",
+              "text": "Ana this week"
+            }
+          ]
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "stage": 1,
+      "confidence": 7,
+      "kr": {
+        "act": 62,
+        "ttv": 40,
+        "tickets": 55,
+        "teams": 35,
+        "mrr": 48,
+        "churn": 80,
+        "p95": 70,
+        "sev": 100,
+        "crash": 90
+      }
+    }
+  }
+}

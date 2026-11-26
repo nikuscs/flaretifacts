@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "entry": [
+    ".agents/sync.ts",
+    "scripts/**/*.ts"
+  ],
+  "ignorePatterns": [
+    "!.agents/**",
+    "worker-configuration.d.ts"
+  ],
+  "dynamicallyLoaded": [],
+  "ignoreDependencies": [
+    "~icons",
+    "@iconify-json/lucide",
+    "@svgr/plugin-jsx"
+  ],
+  "usedClassMembers": [
+    {
+      "extends": "DurableObject",
+      "members": [
+        "fetch",
+        "webSocketMessage",
+        "list",
+        "get",
+        "exists",
+        "versions",
+        "versionsRemove",
+        "write",
+        "stateSave",
+        "remove"
+      ]
+    }
+  ],
+  "ignoreExports": [
+    {
+      "file": "src/components/ui/**",
+      "exports": [
+        "*"
+      ]
+    }
+  ]
+}

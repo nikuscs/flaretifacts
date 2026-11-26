@@ -1,0 +1,447 @@
+{
+  "name": "sales-pipeline",
+  "title": "Sales pipeline",
+  "emoji": "🤝",
+  "description": "A pipeline people check every morning: key numbers, a Kanban board of deals, value per stage, latest activity and a contacts table grouped by company. Start here for CRMs, job hunts, hiring and any board of cards.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "boardCard",
+          "row",
+          "contactsCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Q4 2026 · deals over €1,000",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "Open deals",
+              "value": {
+                "$state": "/open"
+              }
+            },
+            {
+              "label": "Pipeline",
+              "value": {
+                "$state": "/pipeline"
+              },
+              "prefix": "€"
+            },
+            {
+              "label": "Won this quarter",
+              "value": {
+                "$state": "/won"
+              },
+              "prefix": "€",
+              "context": "62% of target"
+            },
+            {
+              "label": "Win rate",
+              "value": 34,
+              "suffix": "%"
+            }
+          ]
+        },
+        "children": []
+      },
+      "boardCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗂️ Deals by stage"
+        },
+        "children": [
+          "ownerFilter",
+          "board"
+        ]
+      },
+      "board": {
+        "type": "Kanban",
+        "props": {
+          "columns": {
+            "$state": "/board"
+          },
+          "where": {
+            "assignee": {
+              "$state": "/owner"
+            }
+          }
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "stageCard",
+          "activityCard"
+        ]
+      },
+      "stageCard": {
+        "type": "Card",
+        "props": {
+          "title": "💰 Value by stage"
+        },
+        "children": [
+          "stages"
+        ]
+      },
+      "stages": {
+        "type": "BarChart",
+        "props": {
+          "x": "stage",
+          "series": [
+            {
+              "key": "value",
+              "label": "Value"
+            }
+          ],
+          "unit": "€",
+          "data": {
+            "$state": "/byStage"
+          }
+        },
+        "children": []
+      },
+      "activityCard": {
+        "type": "Card",
+        "props": {
+          "title": "⚡ Latest activity"
+        },
+        "children": [
+          "activity"
+        ]
+      },
+      "activity": {
+        "type": "Timeline",
+        "props": {
+          "label": "Activity",
+          "events": {
+            "$state": "/activity"
+          }
+        },
+        "children": []
+      },
+      "contactsCard": {
+        "type": "Card",
+        "props": {
+          "title": "👥 Contacts"
+        },
+        "children": [
+          "contacts"
+        ]
+      },
+      "contacts": {
+        "type": "DataTable",
+        "props": {
+          "pageSize": 10,
+          "groupBy": "company",
+          "columns": [
+            {
+              "key": "name",
+              "label": "Name"
+            },
+            {
+              "key": "company",
+              "label": "Company"
+            },
+            {
+              "key": "role",
+              "label": "Role"
+            },
+            {
+              "key": "stage",
+              "label": "Stage",
+              "type": "badge",
+              "tones": {
+                "🏆 Won": "success",
+                "💀 Lost": "danger",
+                "📨 Proposal": "info",
+                "🤝 Negotiation": "warning"
+              }
+            },
+            {
+              "key": "value",
+              "label": "Deal",
+              "type": "money",
+              "currency": "EUR"
+            },
+            {
+              "key": "linkedin",
+              "label": "Profile",
+              "type": "link",
+              "labelKey": "name"
+            }
+          ],
+          "rows": {
+            "$state": "/contacts"
+          }
+        },
+        "children": []
+      },
+      "ownerFilter": {
+        "type": "Filters",
+        "props": {
+          "label": "Owner",
+          "all": "Everyone",
+          "value": {
+            "$bindState": "/owner"
+          },
+          "options": [
+            {
+              "value": "Ana",
+              "emoji": "🦊",
+              "count": 2
+            },
+            {
+              "value": "Liam",
+              "emoji": "🐻",
+              "count": 3
+            },
+            {
+              "value": "Rita",
+              "emoji": "🐼",
+              "count": 2
+            }
+          ]
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "open": 14,
+      "pipeline": 186400,
+      "won": 74200,
+      "board": [
+        {
+          "title": "Lead",
+          "tone": "neutral",
+          "cards": [
+            {
+              "title": "Northwind",
+              "description": "Website rebuild",
+              "tags": [
+                {
+                  "text": "📥 Inbound",
+                  "tone": "info"
+                }
+              ],
+              "meta": "€12k",
+              "assignee": "Ana"
+            },
+            {
+              "title": "Umbrella",
+              "description": "Data audit",
+              "tags": [
+                {
+                  "text": "🤝 Referral",
+                  "tone": "success"
+                }
+              ],
+              "meta": "€8k",
+              "assignee": "Liam"
+            }
+          ]
+        },
+        {
+          "title": "Proposal",
+          "tone": "info",
+          "cards": [
+            {
+              "title": "Globex",
+              "description": "Annual retainer",
+              "tags": [
+                {
+                  "text": "🔥 Hot",
+                  "tone": "danger"
+                }
+              ],
+              "meta": "€48k · due 25 Nov",
+              "assignee": "Liam"
+            },
+            {
+              "title": "Hooli",
+              "description": "Mobile app",
+              "tags": [
+                {
+                  "text": "📤 Outbound",
+                  "tone": "neutral"
+                }
+              ],
+              "meta": "€36k",
+              "assignee": "Rita"
+            }
+          ]
+        },
+        {
+          "title": "Negotiation",
+          "tone": "warning",
+          "cards": [
+            {
+              "title": "Initech",
+              "description": "Support plan",
+              "tags": [
+                {
+                  "text": "🔁 Renewal",
+                  "tone": "success"
+                }
+              ],
+              "meta": "€18k · call Fri",
+              "assignee": "Ana"
+            }
+          ]
+        },
+        {
+          "title": "Won",
+          "tone": "success",
+          "cards": [
+            {
+              "title": "Acme",
+              "description": "Platform licence",
+              "tags": [
+                {
+                  "text": "✅ Closed",
+                  "tone": "success"
+                }
+              ],
+              "meta": "€42k",
+              "assignee": "Liam"
+            },
+            {
+              "title": "Stark",
+              "description": "Workshop",
+              "tags": [
+                {
+                  "text": "✅ Closed",
+                  "tone": "success"
+                }
+              ],
+              "meta": "€6k",
+              "assignee": "Rita"
+            }
+          ]
+        }
+      ],
+      "byStage": [
+        {
+          "stage": "Lead",
+          "value": 20000
+        },
+        {
+          "stage": "Proposal",
+          "value": 84000
+        },
+        {
+          "stage": "Negotiation",
+          "value": 18000
+        },
+        {
+          "stage": "Won",
+          "value": 74200
+        }
+      ],
+      "activity": [
+        {
+          "day": "Today",
+          "time": "10:20",
+          "actor": "Liam",
+          "title": "sent the Globex proposal",
+          "tone": "success"
+        },
+        {
+          "day": "Today",
+          "time": "09:05",
+          "actor": "Ana",
+          "title": "booked a call with Initech",
+          "meta": "Friday 15:00"
+        },
+        {
+          "day": "Yesterday",
+          "time": "16:40",
+          "actor": "Rita",
+          "title": "lost Soylent to a competitor",
+          "tone": "danger",
+          "detail": "Price was 20% higher; they chose an agency in Porto."
+        }
+      ],
+      "contacts": [
+        {
+          "name": "Maria Silva",
+          "company": "Globex",
+          "role": "CTO",
+          "stage": "📨 Proposal",
+          "value": 48000,
+          "linkedin": "https://linkedin.com/in/example1"
+        },
+        {
+          "name": "Tom Baker",
+          "company": "Globex",
+          "role": "CFO",
+          "stage": "📨 Proposal",
+          "value": 48000,
+          "linkedin": "https://linkedin.com/in/example2"
+        },
+        {
+          "name": "Inês Costa",
+          "company": "Initech",
+          "role": "Head of IT",
+          "stage": "🤝 Negotiation",
+          "value": 18000,
+          "linkedin": "https://linkedin.com/in/example3"
+        },
+        {
+          "name": "Paul Grant",
+          "company": "Acme",
+          "role": "COO",
+          "stage": "🏆 Won",
+          "value": 42000,
+          "linkedin": "https://linkedin.com/in/example4"
+        },
+        {
+          "name": "Lena Fischer",
+          "company": "Hooli",
+          "role": "Product lead",
+          "stage": "📨 Proposal",
+          "value": 36000,
+          "linkedin": "https://linkedin.com/in/example5"
+        },
+        {
+          "name": "Rui Almeida",
+          "company": "Soylent",
+          "role": "CEO",
+          "stage": "💀 Lost",
+          "value": 22000,
+          "linkedin": "https://linkedin.com/in/example6"
+        }
+      ],
+      "owner": "all"
+    }
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "name": "dashboard",
+  "title": "Business dashboard",
+  "emoji": "📈",
+  "description": "Headline numbers, a trend, two comparisons and a ranking, with every number in state so an update is one artifacts_update or artifacts_patch on /state. Start here for any metrics or stats page.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "kpis",
+          "trendCard",
+          "row",
+          "vendorsCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": {
+            "$state": "/updated"
+          },
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "kpis": {
+        "type": "Grid",
+        "props": {
+          "columns": "4"
+        },
+        "children": [
+          "revenue",
+          "costs",
+          "customers",
+          "churn"
+        ]
+      },
+      "revenue": {
+        "type": "Metric",
+        "props": {
+          "label": "Revenue",
+          "value": {
+            "$state": "/kpis/revenue"
+          },
+          "prefix": "€",
+          "change": {
+            "$state": "/kpis/revenueChange"
+          },
+          "context": "vs last month"
+        },
+        "children": []
+      },
+      "costs": {
+        "type": "Metric",
+        "props": {
+          "label": "Costs",
+          "value": {
+            "$state": "/kpis/costs"
+          },
+          "prefix": "€",
+          "change": {
+            "$state": "/kpis/costsChange"
+          },
+          "context": "vs last month"
+        },
+        "children": []
+      },
+      "customers": {
+        "type": "Metric",
+        "props": {
+          "label": "Customers",
+          "value": {
+            "$state": "/kpis/customers"
+          },
+          "change": {
+            "$state": "/kpis/customersChange"
+          },
+          "context": "active this month"
+        },
+        "children": []
+      },
+      "churn": {
+        "type": "Stat",
+        "props": {
+          "label": "Churn",
+          "value": {
+            "$state": "/kpis/churn"
+          },
+          "trend": "down",
+          "hint": "of paying customers"
+        },
+        "children": []
+      },
+      "trendCard": {
+        "type": "Card",
+        "props": {
+          "title": "📈 Revenue and costs",
+          "description": "Last six months"
+        },
+        "children": [
+          "trend"
+        ]
+      },
+      "trend": {
+        "type": "AreaChart",
+        "props": {
+          "x": "month",
+          "series": [
+            {
+              "key": "revenue",
+              "label": "Revenue"
+            },
+            {
+              "key": "costs",
+              "label": "Costs"
+            }
+          ],
+          "data": {
+            "$state": "/monthly"
+          }
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "channelsCard",
+          "splitCard"
+        ]
+      },
+      "channelsCard": {
+        "type": "Card",
+        "props": {
+          "title": "📣 New customers by channel"
+        },
+        "children": [
+          "channels"
+        ]
+      },
+      "channels": {
+        "type": "BarChart",
+        "props": {
+          "x": "month",
+          "series": [
+            {
+              "key": "organic",
+              "label": "Organic"
+            },
+            {
+              "key": "paid",
+              "label": "Paid"
+            }
+          ],
+          "data": {
+            "$state": "/channels"
+          },
+          "unit": "customers"
+        },
+        "children": []
+      },
+      "splitCard": {
+        "type": "Card",
+        "props": {
+          "title": "💸 Where the money went"
+        },
+        "children": [
+          "split"
+        ]
+      },
+      "split": {
+        "type": "PieChart",
+        "props": {
+          "centerLabel": "Costs",
+          "data": {
+            "$state": "/costSplit"
+          }
+        },
+        "children": []
+      },
+      "vendorsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🏆 Top customers",
+          "description": "Revenue this month"
+        },
+        "children": [
+          "vendors"
+        ]
+      },
+      "vendors": {
+        "type": "RankedList",
+        "props": {
+          "unit": " €",
+          "rows": {
+            "$state": "/topCustomers"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "updated": "Updated 18 Nov 2026 from the books",
+      "kpis": {
+        "revenue": 48250,
+        "revenueChange": "+12.4%",
+        "costs": 21730,
+        "costsChange": "-3.1%",
+        "customers": 312,
+        "customersChange": "+18",
+        "churn": "2.1%"
+      },
+      "monthly": [
+        {
+          "month": "Jun",
+          "revenue": 31200,
+          "costs": 19800
+        },
+        {
+          "month": "Jul",
+          "revenue": 33400,
+          "costs": 20100
+        },
+        {
+          "month": "Aug",
+          "revenue": 36100,
+          "costs": 22400
+        },
+        {
+          "month": "Sep",
+          "revenue": 39800,
+          "costs": 21000
+        },
+        {
+          "month": "Oct",
+          "revenue": 42900,
+          "costs": 22430
+        },
+        {
+          "month": "Nov",
+          "revenue": 48250,
+          "costs": 21730
+        }
+      ],
+      "channels": [
+        {
+          "month": "Jun",
+          "organic": 22,
+          "paid": 10
+        },
+        {
+          "month": "Jul",
+          "organic": 25,
+          "paid": 12
+        },
+        {
+          "month": "Aug",
+          "organic": 31,
+          "paid": 9
+        },
+        {
+          "month": "Sep",
+          "organic": 28,
+          "paid": 14
+        },
+        {
+          "month": "Oct",
+          "organic": 35,
+          "paid": 16
+        },
+        {
+          "month": "Nov",
+          "organic": 41,
+          "paid": 18
+        }
+      ],
+      "costSplit": [
+        {
+          "label": "Salaries",
+          "value": 12000
+        },
+        {
+          "label": "Software",
+          "value": 4200
+        },
+        {
+          "label": "Rent",
+          "value": 3100
+        },
+        {
+          "label": "Travel",
+          "value": 1600
+        },
+        {
+          "label": "Other",
+          "value": 830
+        }
+      ],
+      "topCustomers": [
+        {
+          "label": "Acme Lda",
+          "hint": "Annual plan",
+          "value": 9600
+        },
+        {
+          "label": "Northwind",
+          "hint": "Monthly",
+          "value": 4200
+        },
+        {
+          "label": "Globex",
+          "hint": "Monthly",
+          "value": 3100
+        },
+        {
+          "label": "Initech",
+          "hint": "Annual plan",
+          "value": 2400
+        }
+      ]
+    }
+  }
+}

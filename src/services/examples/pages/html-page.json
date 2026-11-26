@@ -1,0 +1,10 @@
+{
+  "name": "html-page",
+  "title": "Countdown to launch",
+  "emoji": "⏳",
+  "description": "A custom HTML page using the app's colours and o- classes, for visuals no block can show. Prefer blocks; use HTML only when you must.",
+  "spec": {
+    "html": "<div class=\"o-stack\">\n  <h1 class=\"o-h1\">Countdown to launch</h1>\n  <p class=\"o-muted\">A small custom page in HTML. It uses the app's colours and the o- classes.</p>\n  <div class=\"o-grid\">\n    <div class=\"o-card\"><span class=\"o-label\">Days</span><span class=\"o-value\" id=\"days\">0</span></div>\n    <div class=\"o-card\"><span class=\"o-label\">Hours</span><span class=\"o-value\" id=\"hours\">0</span></div>\n    <div class=\"o-card\"><span class=\"o-label\">Minutes</span><span class=\"o-value\" id=\"minutes\">0</span></div>\n  </div>\n  <div class=\"o-list\">\n    <div class=\"o-row\"><span>Launch</span><span class=\"o-badge\">12 Dec 2026, 10:00</span></div>\n    <div class=\"o-row\"><span>Owner</span><span>Ana</span></div>\n  </div>\n</div>\n<script>\n  var target = Date.UTC(2026, 11, 12, 10);\n  function tick() {\n    var left = Math.max(0, target - Date.now());\n    document.getElementById('days').textContent = Math.floor(left / 864e5);\n    document.getElementById('hours').textContent = Math.floor(left / 36e5) % 24;\n    document.getElementById('minutes').textContent = Math.floor(left / 6e4) % 60;\n  }\n  tick();\n  setInterval(tick, 30000);\n</script>",
+    "state": {}
+  }
+}

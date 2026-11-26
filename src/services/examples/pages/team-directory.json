@@ -1,0 +1,714 @@
+{
+  "name": "team-directory",
+  "title": "Team directory",
+  "emoji": "👋",
+  "description": "A people page that stores everyone once: one /people list in state feeds the DataTable (avatar column, select filters, role and start date only on wide screens, city in the row panel), a face stack, the team leads and the new joiners, each a People block picking its rows with where (lead: \"yes\", new: \"yes\"). One Filters row filters every block through where; a Dropdown of links, an on-call Table and a birthday List with pages. Start here for teams, rosters, members, creators or leaderboards.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "teamPick",
+          "row",
+          "directoryCard",
+          "row2"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "headRow"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "24 people in 4 teams, from the HR sheet. Updated 18 Nov. Pick a team to filter the whole page.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "headRow": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "lg"
+        },
+        "children": [
+          "everyone",
+          "handbook"
+        ]
+      },
+      "everyone": {
+        "type": "People",
+        "props": {
+          "layout": "stack",
+          "max": 7,
+          "people": {
+            "$state": "/people"
+          }
+        },
+        "children": []
+      },
+      "handbook": {
+        "type": "Dropdown",
+        "props": {
+          "label": "Handbook",
+          "emoji": "📚",
+          "items": [
+            {
+              "label": "Onboarding",
+              "url": "https://example.com/handbook/onboarding",
+              "emoji": "🚀",
+              "description": "Your first two weeks"
+            },
+            {
+              "label": "Holidays and time off",
+              "url": "https://example.com/handbook/time-off",
+              "emoji": "🌴",
+              "description": "25 days, booked in the HR app"
+            },
+            {
+              "label": "Org chart",
+              "url": "https://example.com/handbook/org-chart",
+              "emoji": "🧭"
+            },
+            {
+              "label": "Expenses",
+              "url": "https://example.com/handbook/expenses",
+              "emoji": "🧾",
+              "description": "Receipts within 30 days"
+            }
+          ]
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "People",
+              "value": {
+                "$state": "/stats/people"
+              }
+            },
+            {
+              "label": "Teams",
+              "value": 4
+            },
+            {
+              "label": "Cities",
+              "value": 2,
+              "context": "and 6 remote"
+            },
+            {
+              "label": "Joined this quarter",
+              "value": {
+                "$state": "/stats/joined"
+              },
+              "context": "👋 say hi"
+            }
+          ]
+        },
+        "children": []
+      },
+      "teamPick": {
+        "type": "Filters",
+        "props": {
+          "label": "Team",
+          "all": "Everyone",
+          "value": {
+            "$bindState": "/team"
+          },
+          "options": [
+            {
+              "value": "Design",
+              "emoji": "🎨",
+              "count": 4
+            },
+            {
+              "value": "Engineering",
+              "emoji": "🛠️",
+              "count": 8
+            },
+            {
+              "value": "Sales",
+              "emoji": "💼",
+              "count": 6
+            },
+            {
+              "value": "Support",
+              "emoji": "🎧",
+              "count": 6
+            }
+          ]
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "leadsCard",
+          "newCard"
+        ]
+      },
+      "leadsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧑‍✈️ Team leads"
+        },
+        "children": [
+          "leads"
+        ]
+      },
+      "leads": {
+        "type": "People",
+        "props": {
+          "people": {
+            "$state": "/people"
+          },
+          "where": {
+            "team": {
+              "$state": "/team"
+            },
+            "lead": "yes"
+          }
+        },
+        "children": []
+      },
+      "newCard": {
+        "type": "Card",
+        "props": {
+          "title": "🌱 New this quarter",
+          "description": "Started since October"
+        },
+        "children": [
+          "newList"
+        ]
+      },
+      "newList": {
+        "type": "People",
+        "props": {
+          "people": {
+            "$state": "/people"
+          },
+          "where": {
+            "new": "yes"
+          }
+        },
+        "children": []
+      },
+      "directoryCard": {
+        "type": "Card",
+        "props": {
+          "title": "👥 Everyone",
+          "description": "Search, sort, or filter by city and status"
+        },
+        "children": [
+          "directory"
+        ]
+      },
+      "directory": {
+        "type": "DataTable",
+        "props": {
+          "pageSize": 10,
+          "sort": {
+            "key": "avatar",
+            "direction": "asc"
+          },
+          "columns": [
+            {
+              "key": "avatar",
+              "label": "Name",
+              "type": "avatar",
+              "labelKey": "name"
+            },
+            {
+              "key": "role",
+              "label": "Role",
+              "show": "wide"
+            },
+            {
+              "key": "team",
+              "label": "Team",
+              "type": "badge",
+              "tones": {
+                "Design": "info",
+                "Engineering": "neutral",
+                "Sales": "success",
+                "Support": "warning"
+              },
+              "show": "wide"
+            },
+            {
+              "key": "city",
+              "label": "City",
+              "show": "detail"
+            },
+            {
+              "key": "status",
+              "label": "Status",
+              "type": "badge",
+              "tones": {
+                "🟢 Online": "success",
+                "🌴 On holiday": "info",
+                "🔴 Busy": "danger"
+              }
+            },
+            {
+              "key": "started",
+              "label": "Started",
+              "type": "date",
+              "show": "wide"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city"
+            },
+            {
+              "key": "status"
+            }
+          ],
+          "where": {
+            "team": {
+              "$state": "/team"
+            }
+          },
+          "rows": {
+            "$state": "/people"
+          }
+        },
+        "children": []
+      },
+      "row2": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "onCallCard",
+          "birthdaysCard"
+        ]
+      },
+      "onCallCard": {
+        "type": "Card",
+        "props": {
+          "title": "📟 On call this week"
+        },
+        "children": [
+          "onCall"
+        ]
+      },
+      "onCall": {
+        "type": "Table",
+        "props": {
+          "pageSize": 5,
+          "where": {
+            "team": {
+              "$state": "/team"
+            }
+          },
+          "columns": [
+            {
+              "key": "day",
+              "label": "Day"
+            },
+            {
+              "key": "person",
+              "label": "Who"
+            },
+            {
+              "key": "team",
+              "label": "Team"
+            },
+            {
+              "key": "phone",
+              "label": "Phone",
+              "align": "right"
+            }
+          ],
+          "rows": [
+            {
+              "day": "Mon",
+              "person": "Inês Martins",
+              "team": "Engineering",
+              "phone": "Ext. 200"
+            },
+            {
+              "day": "Mon",
+              "person": "Catarina Correia",
+              "team": "Support",
+              "phone": "Ext. 201"
+            },
+            {
+              "day": "Tue",
+              "person": "João Pereira",
+              "team": "Engineering",
+              "phone": "Ext. 202"
+            },
+            {
+              "day": "Tue",
+              "person": "Bruno Mendes",
+              "team": "Support",
+              "phone": "Ext. 203"
+            },
+            {
+              "day": "Wed",
+              "person": "Sofia Almeida",
+              "team": "Engineering",
+              "phone": "Ext. 204"
+            },
+            {
+              "day": "Wed",
+              "person": "Joana Nunes",
+              "team": "Support",
+              "phone": "Ext. 205"
+            },
+            {
+              "day": "Thu",
+              "person": "Miguel Santos",
+              "team": "Engineering",
+              "phone": "Ext. 206"
+            },
+            {
+              "day": "Thu",
+              "person": "Ricardo Lima",
+              "team": "Support",
+              "phone": "Ext. 207"
+            },
+            {
+              "day": "Fri",
+              "person": "Beatriz Ferreira",
+              "team": "Engineering",
+              "phone": "Ext. 208"
+            },
+            {
+              "day": "Fri",
+              "person": "Filipa Rocha",
+              "team": "Support",
+              "phone": "Ext. 209"
+            }
+          ]
+        },
+        "children": []
+      },
+      "birthdaysCard": {
+        "type": "Card",
+        "props": {
+          "title": "🎂 Birthdays in December"
+        },
+        "children": [
+          "birthdays"
+        ]
+      },
+      "birthdays": {
+        "type": "List",
+        "props": {
+          "pageSize": 5,
+          "where": {
+            "team": {
+              "$state": "/team"
+            }
+          },
+          "items": [
+            {
+              "title": "🎈 Ana Silva",
+              "description": "Head of design",
+              "meta": "3 Dec",
+              "team": "Design"
+            },
+            {
+              "title": "🎈 João Pereira",
+              "description": "Backend engineer",
+              "meta": "5 Dec",
+              "team": "Engineering"
+            },
+            {
+              "title": "🎈 Mariana Pinto",
+              "description": "Account executive",
+              "meta": "9 Dec",
+              "team": "Sales"
+            },
+            {
+              "title": "🎈 Catarina Correia",
+              "description": "Support lead",
+              "meta": "11 Dec",
+              "team": "Support"
+            },
+            {
+              "title": "🎈 Diogo Ribeiro",
+              "description": "Data engineer",
+              "meta": "14 Dec",
+              "team": "Engineering"
+            },
+            {
+              "title": "🎈 Rita Teixeira",
+              "description": "Partnerships",
+              "meta": "18 Dec",
+              "team": "Sales"
+            },
+            {
+              "title": "🎈 Nuno Fonseca",
+              "description": "Support specialist",
+              "meta": "22 Dec",
+              "team": "Support"
+            },
+            {
+              "title": "🎈 Rui Costa",
+              "description": "Product designer",
+              "meta": "28 Dec",
+              "team": "Design"
+            }
+          ]
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "team": "all",
+      "stats": {
+        "people": 24,
+        "joined": 3
+      },
+      "people": [
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=AnaSilva",
+          "name": "Ana Silva",
+          "role": "Head of design",
+          "team": "Design",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2021-03-01",
+          "lead": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=RuiCosta",
+          "name": "Rui Costa",
+          "role": "Product designer",
+          "team": "Design",
+          "city": "Porto",
+          "status": "🟢 Online",
+          "started": "2023-06-12"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=MartaLopes",
+          "name": "Marta Lopes",
+          "role": "Brand designer",
+          "team": "Design",
+          "city": "Remote",
+          "status": "🌴 On holiday",
+          "started": "2024-01-08"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=TiagoRocha",
+          "name": "Tiago Rocha",
+          "role": "UX researcher",
+          "team": "Design",
+          "city": "Lisbon",
+          "status": "🔴 Busy",
+          "started": "2026-10-06",
+          "new": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=InêsMartins",
+          "name": "Inês Martins",
+          "role": "Engineering lead",
+          "team": "Engineering",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2020-09-14",
+          "lead": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=JoãoPereira",
+          "name": "João Pereira",
+          "role": "Backend engineer",
+          "team": "Engineering",
+          "city": "Porto",
+          "status": "🔴 Busy",
+          "started": "2022-02-21"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=SofiaAlmeida",
+          "name": "Sofia Almeida",
+          "role": "Frontend engineer",
+          "team": "Engineering",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2022-11-07"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=MiguelSantos",
+          "name": "Miguel Santos",
+          "role": "Mobile engineer",
+          "team": "Engineering",
+          "city": "Remote",
+          "status": "🟢 Online",
+          "started": "2023-04-03"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=BeatrizFerreira",
+          "name": "Beatriz Ferreira",
+          "role": "Platform engineer",
+          "team": "Engineering",
+          "city": "Lisbon",
+          "status": "🌴 On holiday",
+          "started": "2023-09-18"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=DiogoRibeiro",
+          "name": "Diogo Ribeiro",
+          "role": "Data engineer",
+          "team": "Engineering",
+          "city": "Porto",
+          "status": "🟢 Online",
+          "started": "2024-05-20"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=LeonorGomes",
+          "name": "Leonor Gomes",
+          "role": "QA engineer",
+          "team": "Engineering",
+          "city": "Remote",
+          "status": "🔴 Busy",
+          "started": "2025-02-10"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=BrunoMendes",
+          "name": "Bruno Mendes",
+          "role": "Security engineer",
+          "team": "Engineering",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2026-10-20",
+          "new": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=CarolinaSousa",
+          "name": "Carolina Sousa",
+          "role": "Head of sales",
+          "team": "Sales",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2021-07-05",
+          "lead": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=AndréOliveira",
+          "name": "André Oliveira",
+          "role": "Account executive",
+          "team": "Sales",
+          "city": "Porto",
+          "status": "🔴 Busy",
+          "started": "2022-08-29"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=MarianaPinto",
+          "name": "Mariana Pinto",
+          "role": "Account executive",
+          "team": "Sales",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2023-03-13"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=GonçaloMarques",
+          "name": "Gonçalo Marques",
+          "role": "Sales engineer",
+          "team": "Sales",
+          "city": "Remote",
+          "status": "🌴 On holiday",
+          "started": "2024-07-01"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=RitaTeixeira",
+          "name": "Rita Teixeira",
+          "role": "Partnerships",
+          "team": "Sales",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2025-01-15"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=HugoMoreira",
+          "name": "Hugo Moreira",
+          "role": "SDR",
+          "team": "Sales",
+          "city": "Porto",
+          "status": "🟢 Online",
+          "started": "2026-11-03",
+          "new": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=CatarinaCorreia",
+          "name": "Catarina Correia",
+          "role": "Support lead",
+          "team": "Support",
+          "city": "Porto",
+          "status": "🟢 Online",
+          "started": "2021-11-22",
+          "lead": "yes"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=BrunoMendes",
+          "name": "Bruno Mendes",
+          "role": "Support specialist",
+          "team": "Support",
+          "city": "Remote",
+          "status": "🔴 Busy",
+          "started": "2023-01-09"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=JoanaNunes",
+          "name": "Joana Nunes",
+          "role": "Support specialist",
+          "team": "Support",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2024-02-26"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=RicardoLima",
+          "name": "Ricardo Lima",
+          "role": "Docs writer",
+          "team": "Support",
+          "city": "Remote",
+          "status": "🌴 On holiday",
+          "started": "2024-10-14"
+        },
+        {
+          "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=FilipaRocha",
+          "name": "Filipa Rocha",
+          "role": "Community manager",
+          "team": "Support",
+          "city": "Lisbon",
+          "status": "🟢 Online",
+          "started": "2025-06-02"
+        },
+        {
+          "name": "Nuno Fonseca",
+          "role": "Support specialist",
+          "team": "Support",
+          "city": "Porto",
+          "status": "🟢 Online",
+          "started": "2025-09-08"
+        }
+      ]
+    }
+  }
+}

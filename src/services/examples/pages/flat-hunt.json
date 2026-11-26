@@ -1,0 +1,357 @@
+{
+  "name": "flat-hunt",
+  "title": "Flat hunt, Lisbon",
+  "emoji": "🏠",
+  "description": "A decision page: a side-by-side comparison of the shortlist, the viewings agenda, questions to tick, every option in a table, and notes. Start here for choosing between options: flats, cars, tools, plans or job offers.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "compareCard",
+          "row",
+          "viewingsCard",
+          "notesCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "alert"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "T2 near a metro, under €1,600 · decide by 30 November",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "alert": {
+        "type": "Alert",
+        "props": {
+          "title": "⏰ Arroios asks for an answer by Friday",
+          "description": "The agent has a second offer.",
+          "variant": "warning"
+        },
+        "children": []
+      },
+      "compareCard": {
+        "type": "Card",
+        "props": {
+          "title": "⭐ Shortlist"
+        },
+        "children": [
+          "compare"
+        ]
+      },
+      "compare": {
+        "type": "Comparison",
+        "props": {
+          "options": [
+            {
+              "name": "Arroios",
+              "price": "€1,450",
+              "period": "/month",
+              "description": "Bright, 3rd floor, no lift"
+            },
+            {
+              "name": "Campo de Ourique",
+              "price": "€1,590",
+              "period": "/month",
+              "description": "Renovated, quiet street",
+              "highlight": true
+            },
+            {
+              "name": "Alvalade",
+              "price": "€1,380",
+              "period": "/month",
+              "description": "Bigger, older kitchen"
+            }
+          ],
+          "rows": [
+            {
+              "label": "Size",
+              "values": [
+                "68 m²",
+                "74 m²",
+                "81 m²"
+              ]
+            },
+            {
+              "label": "Metro",
+              "hint": "Walk to the nearest station",
+              "values": [
+                "3 min",
+                "12 min",
+                "6 min"
+              ]
+            },
+            {
+              "label": "Balcony",
+              "values": [
+                true,
+                true,
+                false
+              ]
+            },
+            {
+              "label": "Lift",
+              "values": [
+                false,
+                true,
+                true
+              ]
+            },
+            {
+              "label": "Dishwasher",
+              "values": [
+                true,
+                true,
+                false
+              ]
+            },
+            {
+              "label": "Pets allowed",
+              "values": [
+                false,
+                true,
+                true
+              ]
+            },
+            {
+              "label": "Deposit",
+              "values": [
+                "2 months",
+                "2 months",
+                "3 months"
+              ]
+            }
+          ]
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "agendaCard",
+          "checkCard"
+        ]
+      },
+      "agendaCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗓️ Viewings"
+        },
+        "children": [
+          "agenda"
+        ]
+      },
+      "agenda": {
+        "type": "Agenda",
+        "props": {
+          "events": [
+            {
+              "date": "2026-11-20",
+              "time": "18:30",
+              "title": "Campo de Ourique, 2nd visit",
+              "location": "Rua Ferreira Borges",
+              "tone": "info"
+            },
+            {
+              "date": "2026-11-21",
+              "time": "10:00",
+              "title": "Alvalade",
+              "location": "Av. da Igreja"
+            },
+            {
+              "date": "2026-11-22",
+              "time": "12:00",
+              "title": "Answer Arroios",
+              "tone": "warning"
+            }
+          ]
+        },
+        "children": []
+      },
+      "checkCard": {
+        "type": "Card",
+        "props": {
+          "title": "❓ Ask at every viewing"
+        },
+        "children": [
+          "questions"
+        ]
+      },
+      "questions": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/questions"
+          }
+        },
+        "children": []
+      },
+      "viewingsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🏘️ Everything seen"
+        },
+        "children": [
+          "seen"
+        ]
+      },
+      "seen": {
+        "type": "DataTable",
+        "props": {
+          "pageSize": 10,
+          "sort": {
+            "key": "score",
+            "direction": "desc"
+          },
+          "columns": [
+            {
+              "key": "area",
+              "label": "Area"
+            },
+            {
+              "key": "rent",
+              "label": "Rent",
+              "type": "money",
+              "currency": "EUR"
+            },
+            {
+              "key": "size",
+              "label": "m²",
+              "type": "number"
+            },
+            {
+              "key": "score",
+              "label": "Our score",
+              "type": "progress"
+            },
+            {
+              "key": "verdict",
+              "label": "Verdict",
+              "type": "badge",
+              "tones": {
+                "⭐ Shortlist": "success",
+                "❌ No": "danger",
+                "🤔 Maybe": "warning"
+              }
+            },
+            {
+              "key": "listing",
+              "label": "Listing",
+              "type": "link"
+            }
+          ],
+          "rows": {
+            "$state": "/seen"
+          }
+        },
+        "children": []
+      },
+      "notesCard": {
+        "type": "Card",
+        "props": {
+          "title": "📝 Notes"
+        },
+        "children": [
+          "notes"
+        ]
+      },
+      "notes": {
+        "type": "Notes",
+        "props": {
+          "placeholder": "Gut feelings, neighbours, noise…",
+          "value": {
+            "$bindState": "/notes"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "questions": [
+        {
+          "title": "Heating and insulation?",
+          "done": true
+        },
+        {
+          "title": "Condo fees included?",
+          "done": true
+        },
+        {
+          "title": "Noise at night?"
+        },
+        {
+          "title": "Fibre internet?"
+        }
+      ],
+      "seen": [
+        {
+          "area": "Campo de Ourique",
+          "rent": 1590,
+          "size": 74,
+          "score": 88,
+          "verdict": "⭐ Shortlist",
+          "listing": "https://www.idealista.pt/imovel/33000001"
+        },
+        {
+          "area": "Arroios",
+          "rent": 1450,
+          "size": 68,
+          "score": 80,
+          "verdict": "⭐ Shortlist",
+          "listing": "https://www.idealista.pt/imovel/33000002"
+        },
+        {
+          "area": "Alvalade",
+          "rent": 1380,
+          "size": 81,
+          "score": 76,
+          "verdict": "⭐ Shortlist",
+          "listing": "https://www.idealista.pt/imovel/33000003"
+        },
+        {
+          "area": "Graça",
+          "rent": 1500,
+          "size": 60,
+          "score": 55,
+          "verdict": "🤔 Maybe",
+          "listing": "https://www.idealista.pt/imovel/33000004"
+        },
+        {
+          "area": "Benfica",
+          "rent": 1250,
+          "size": 70,
+          "score": 40,
+          "verdict": "❌ No",
+          "listing": "https://www.idealista.pt/imovel/33000005"
+        },
+        {
+          "area": "Saldanha",
+          "rent": 1650,
+          "size": 65,
+          "score": 62,
+          "verdict": "🤔 Maybe",
+          "listing": "https://www.idealista.pt/imovel/33000006"
+        }
+      ]
+    }
+  }
+}

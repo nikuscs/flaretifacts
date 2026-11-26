@@ -1,0 +1,3292 @@
+{
+  "name": "every-block",
+  "title": "Every block",
+  "emoji": "🧩",
+  "description": "Every block the app has, laid out like a real stats page, with links on names and rows and an Html block running custom JS. Open it to see what each block looks like, then copy the parts you need.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "intro": {
+        "type": "Text",
+        "props": {
+          "text": "Every block an agent can use, laid out like a real insights page. Numbers are made up.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "badges": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "sm"
+        },
+        "children": [
+          "b1",
+          "b2",
+          "b3"
+        ]
+      },
+      "b1": {
+        "type": "Badge",
+        "props": {
+          "text": "🟢 Live",
+          "variant": "success"
+        },
+        "children": []
+      },
+      "b2": {
+        "type": "Badge",
+        "props": {
+          "text": "🗓️ Q4 2026",
+          "variant": "outline"
+        },
+        "children": []
+      },
+      "b3": {
+        "type": "Badge",
+        "props": {
+          "text": "⚠️ 2 issues",
+          "variant": "destructive"
+        },
+        "children": []
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "intro",
+          "badges"
+        ]
+      },
+      "kpis": {
+        "type": "Grid",
+        "props": {
+          "columns": "4"
+        },
+        "children": [
+          "k1",
+          "k2",
+          "k3",
+          "k4"
+        ]
+      },
+      "k1": {
+        "type": "Metric",
+        "props": {
+          "label": "Revenue",
+          "value": 48250,
+          "prefix": "€",
+          "change": "+12.4%",
+          "context": "vs October"
+        },
+        "children": []
+      },
+      "k2": {
+        "type": "Metric",
+        "props": {
+          "label": "Expenses",
+          "value": 21730,
+          "prefix": "€",
+          "change": "-3.1%",
+          "context": "vs October"
+        },
+        "children": []
+      },
+      "k3": {
+        "type": "Stat",
+        "props": {
+          "label": "Matched movements",
+          "value": "94%",
+          "change": "+6 pts",
+          "trend": "up",
+          "hint": "412 of 438"
+        },
+        "children": []
+      },
+      "k4": {
+        "type": "Stat",
+        "props": {
+          "label": "Open invoices",
+          "value": 7,
+          "change": "+2",
+          "trend": "down",
+          "hint": "€6,120 due"
+        },
+        "children": []
+      },
+      "cashCard": {
+        "type": "Card",
+        "props": {
+          "title": "💶 Cash flow",
+          "description": "Money in and out per month"
+        },
+        "children": [
+          "cash"
+        ]
+      },
+      "cash": {
+        "type": "AreaChart",
+        "props": {
+          "title": "Net cash",
+          "value": "€26,520",
+          "change": "+18%",
+          "caption": "Last six months",
+          "x": "month",
+          "series": [
+            {
+              "key": "in",
+              "label": "In"
+            },
+            {
+              "key": "out",
+              "label": "Out"
+            }
+          ],
+          "data": [
+            {
+              "month": "Jun",
+              "in": 31200,
+              "out": 19800
+            },
+            {
+              "month": "Jul",
+              "in": 33400,
+              "out": 20100
+            },
+            {
+              "month": "Aug",
+              "in": 36100,
+              "out": 22400
+            },
+            {
+              "month": "Sep",
+              "in": 39800,
+              "out": 21000
+            },
+            {
+              "month": "Oct",
+              "in": 42900,
+              "out": 22430
+            },
+            {
+              "month": "Nov",
+              "in": 48250,
+              "out": 21730
+            }
+          ]
+        },
+        "children": []
+      },
+      "row2": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "barCard",
+          "pieCard"
+        ]
+      },
+      "barCard": {
+        "type": "Card",
+        "props": {
+          "title": "📄 Documents per month"
+        },
+        "children": [
+          "bars"
+        ]
+      },
+      "bars": {
+        "type": "BarChart",
+        "props": {
+          "x": "month",
+          "series": [
+            {
+              "key": "docs",
+              "label": "Documents"
+            }
+          ],
+          "average": true,
+          "unit": "docs",
+          "value": "86",
+          "change": "+9%",
+          "data": [
+            {
+              "month": "Jun",
+              "docs": 54
+            },
+            {
+              "month": "Jul",
+              "docs": 61
+            },
+            {
+              "month": "Aug",
+              "docs": 58
+            },
+            {
+              "month": "Sep",
+              "docs": 72
+            },
+            {
+              "month": "Oct",
+              "docs": 79
+            },
+            {
+              "month": "Nov",
+              "docs": 86
+            }
+          ]
+        },
+        "children": []
+      },
+      "pieCard": {
+        "type": "Card",
+        "props": {
+          "title": "🍰 Spend by category"
+        },
+        "children": [
+          "pie"
+        ]
+      },
+      "pie": {
+        "type": "PieChart",
+        "props": {
+          "centerLabel": "Total",
+          "data": [
+            {
+              "label": "Software",
+              "value": 8420
+            },
+            {
+              "label": "Travel",
+              "value": 4310
+            },
+            {
+              "label": "Office",
+              "value": 2980
+            },
+            {
+              "label": "Meals",
+              "value": 1870
+            },
+            {
+              "label": "Other",
+              "value": 1150
+            }
+          ]
+        },
+        "children": []
+      },
+      "row3": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "splitCard",
+          "waffleCard"
+        ]
+      },
+      "splitCard": {
+        "type": "Card",
+        "props": {
+          "title": "💸 Where the money went"
+        },
+        "children": [
+          "split"
+        ]
+      },
+      "split": {
+        "type": "SplitBar",
+        "props": {
+          "title": "November expenses",
+          "description": "Share of €21,730",
+          "totalLabel": "Total",
+          "unit": " €",
+          "segments": [
+            {
+              "label": "Salaries",
+              "value": 12000
+            },
+            {
+              "label": "Software",
+              "value": 4200
+            },
+            {
+              "label": "Rent",
+              "value": 3100
+            },
+            {
+              "label": "Travel",
+              "value": 1600
+            },
+            {
+              "label": "Other",
+              "value": 830
+            }
+          ]
+        },
+        "children": []
+      },
+      "waffleCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧩 Matching progress"
+        },
+        "children": [
+          "waffle"
+        ]
+      },
+      "waffle": {
+        "type": "WaffleChart",
+        "props": {
+          "title": "Bank movements",
+          "caption": "Confirmed, proposed and still open",
+          "data": [
+            {
+              "label": "Confirmed",
+              "value": 372
+            },
+            {
+              "label": "Proposed",
+              "value": 40
+            },
+            {
+              "label": "Open",
+              "value": 26
+            }
+          ]
+        },
+        "children": []
+      },
+      "row4": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "rankCard",
+          "lineCard"
+        ]
+      },
+      "rankCard": {
+        "type": "Card",
+        "props": {
+          "title": "🏆 Top vendors"
+        },
+        "children": [
+          "ranked"
+        ]
+      },
+      "ranked": {
+        "type": "RankedList",
+        "props": {
+          "unit": " €",
+          "rows": [
+            {
+              "label": "Anthropic",
+              "hint": "AI",
+              "value": 3120,
+              "url": "https://example.com/vendors/1"
+            },
+            {
+              "label": "Cloudflare",
+              "hint": "Hosting",
+              "value": 1480
+            },
+            {
+              "label": "Google Workspace",
+              "hint": "Office",
+              "value": 620
+            },
+            {
+              "label": "TAP Air Portugal",
+              "hint": "Travel",
+              "value": 1890
+            },
+            {
+              "label": "Figma",
+              "hint": "Design",
+              "value": 450
+            }
+          ]
+        },
+        "children": []
+      },
+      "lineCard": {
+        "type": "Card",
+        "props": {
+          "title": "📈 Signups"
+        },
+        "children": [
+          "line"
+        ]
+      },
+      "line": {
+        "type": "LineChart",
+        "props": {
+          "title": "Weekly signups",
+          "value": "310",
+          "change": "+29%",
+          "x": "week",
+          "series": [
+            {
+              "key": "web",
+              "label": "Web"
+            },
+            {
+              "key": "ios",
+              "label": "iOS"
+            }
+          ],
+          "data": [
+            {
+              "week": "W1",
+              "web": 120,
+              "ios": 60
+            },
+            {
+              "week": "W2",
+              "web": 150,
+              "ios": 72
+            },
+            {
+              "week": "W3",
+              "web": 170,
+              "ios": 80
+            },
+            {
+              "week": "W4",
+              "web": 210,
+              "ios": 95
+            },
+            {
+              "week": "W5",
+              "web": 240,
+              "ios": 120
+            },
+            {
+              "week": "W6",
+              "web": 310,
+              "ios": 140
+            }
+          ]
+        },
+        "children": []
+      },
+      "tableCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧾 Recent invoices",
+          "description": "Issued this month"
+        },
+        "children": [
+          "invoiceFilter",
+          "table"
+        ]
+      },
+      "table": {
+        "type": "Table",
+        "props": {
+          "columns": [
+            {
+              "key": "number",
+              "label": "Number",
+              "urlKey": "link"
+            },
+            {
+              "key": "client",
+              "label": "Client"
+            },
+            {
+              "key": "issued",
+              "label": "Issued"
+            },
+            {
+              "key": "status",
+              "label": "Status"
+            },
+            {
+              "key": "total",
+              "label": "Total",
+              "align": "right"
+            }
+          ],
+          "rows": [
+            {
+              "number": "FT 2026/118",
+              "client": "Acme Lda",
+              "issued": "03 Nov",
+              "status": "Paid",
+              "total": "€4,200.00",
+              "link": "https://example.com/rows/1"
+            },
+            {
+              "number": "FT 2026/119",
+              "client": "Northwind",
+              "issued": "07 Nov",
+              "status": "Due",
+              "total": "€1,850.00",
+              "link": "https://example.com/rows/2"
+            },
+            {
+              "number": "FT 2026/120",
+              "client": "Globex",
+              "issued": "12 Nov",
+              "status": "Due",
+              "total": "€3,075.50",
+              "link": "https://example.com/rows/3"
+            },
+            {
+              "number": "FT 2026/121",
+              "client": "Initech",
+              "issued": "16 Nov",
+              "status": "Draft",
+              "total": "€920.00",
+              "link": "https://example.com/rows/4"
+            },
+            {
+              "number": "FT 2026/122",
+              "client": "Umbrella",
+              "issued": "18 Nov",
+              "status": "Paid",
+              "total": "€2,640.00",
+              "link": "https://example.com/rows/5"
+            },
+            {
+              "number": "FT 2026/123",
+              "client": "Hooli",
+              "issued": "20 Nov",
+              "status": "Due",
+              "total": "€5,310.00",
+              "link": "https://example.com/rows/6"
+            },
+            {
+              "number": "FT 2026/124",
+              "client": "Stark",
+              "issued": "22 Nov",
+              "status": "Draft",
+              "total": "€780.00",
+              "link": "https://example.com/rows/7"
+            }
+          ],
+          "where": {
+            "status": {
+              "$state": "/invoiceStatus"
+            }
+          },
+          "pageSize": 5
+        },
+        "children": []
+      },
+      "row5": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "gaugeCard",
+          "usageCard",
+          "progressCard"
+        ]
+      },
+      "gaugeCard": {
+        "type": "Card",
+        "props": {
+          "title": "❤️ Health"
+        },
+        "children": [
+          "gauge"
+        ]
+      },
+      "gauge": {
+        "type": "Gauge",
+        "props": {
+          "label": "Books health",
+          "value": 82,
+          "max": 100,
+          "unit": "%",
+          "status": "Good",
+          "description": "3 documents need review",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "usageCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗄️ Storage"
+        },
+        "children": [
+          "usage"
+        ]
+      },
+      "usage": {
+        "type": "UsageMeter",
+        "props": {
+          "title": "R2 bucket",
+          "used": 7.4,
+          "total": 10,
+          "unit": "GB",
+          "parts": [
+            {
+              "label": "Documents",
+              "value": 4.1
+            },
+            {
+              "label": "Statements",
+              "value": 1.9
+            },
+            {
+              "label": "Exports",
+              "value": 1.4
+            }
+          ],
+          "caption": "74% of the plan"
+        },
+        "children": []
+      },
+      "progressCard": {
+        "type": "Card",
+        "props": {
+          "title": "📆 Month close"
+        },
+        "children": [
+          "p1",
+          "p2",
+          "spark"
+        ]
+      },
+      "p1": {
+        "type": "Progress",
+        "props": {
+          "label": "Documents reviewed",
+          "value": 88,
+          "hint": "44 of 50"
+        },
+        "children": []
+      },
+      "p2": {
+        "type": "Progress",
+        "props": {
+          "label": "Movements matched",
+          "value": 64
+        },
+        "children": []
+      },
+      "spark": {
+        "type": "Sparkline",
+        "props": {
+          "label": "Daily matches",
+          "value": "38",
+          "change": "+12%",
+          "data": [
+            12,
+            18,
+            15,
+            22,
+            19,
+            27,
+            25,
+            31,
+            29,
+            38
+          ]
+        },
+        "children": []
+      },
+      "heatCard": {
+        "type": "Card",
+        "props": {
+          "title": "🔥 Activity",
+          "description": "Documents read per day"
+        },
+        "children": [
+          "heat"
+        ]
+      },
+      "heat": {
+        "type": "Heatmap",
+        "props": {
+          "title": "Last 120 days",
+          "caption": "Busier days are darker",
+          "days": [
+            {
+              "date": "2026-07-22",
+              "value": 10
+            },
+            {
+              "date": "2026-07-23",
+              "value": 4
+            },
+            {
+              "date": "2026-07-24",
+              "value": 5
+            },
+            {
+              "date": "2026-07-25",
+              "value": 6
+            },
+            {
+              "date": "2026-07-26",
+              "value": 6
+            },
+            {
+              "date": "2026-07-27",
+              "value": 7
+            },
+            {
+              "date": "2026-07-28",
+              "value": 7
+            },
+            {
+              "date": "2026-07-29",
+              "value": 13
+            },
+            {
+              "date": "2026-07-30",
+              "value": 7
+            },
+            {
+              "date": "2026-07-31",
+              "value": 7
+            },
+            {
+              "date": "2026-08-01",
+              "value": 7
+            },
+            {
+              "date": "2026-08-02",
+              "value": 7
+            },
+            {
+              "date": "2026-08-03",
+              "value": 6
+            },
+            {
+              "date": "2026-08-04",
+              "value": 6
+            },
+            {
+              "date": "2026-08-05",
+              "value": 11
+            },
+            {
+              "date": "2026-08-06",
+              "value": 4
+            },
+            {
+              "date": "2026-08-07",
+              "value": 3
+            },
+            {
+              "date": "2026-08-08",
+              "value": 2
+            },
+            {
+              "date": "2026-08-09",
+              "value": 2
+            },
+            {
+              "date": "2026-08-10",
+              "value": 1
+            },
+            {
+              "date": "2026-08-11",
+              "value": 0
+            },
+            {
+              "date": "2026-08-12",
+              "value": 6
+            },
+            {
+              "date": "2026-08-13",
+              "value": 0
+            },
+            {
+              "date": "2026-08-14",
+              "value": 0
+            },
+            {
+              "date": "2026-08-15",
+              "value": 0
+            },
+            {
+              "date": "2026-08-16",
+              "value": 0
+            },
+            {
+              "date": "2026-08-17",
+              "value": 0
+            },
+            {
+              "date": "2026-08-18",
+              "value": 0
+            },
+            {
+              "date": "2026-08-19",
+              "value": 7
+            },
+            {
+              "date": "2026-08-20",
+              "value": 2
+            },
+            {
+              "date": "2026-08-21",
+              "value": 2
+            },
+            {
+              "date": "2026-08-22",
+              "value": 3
+            },
+            {
+              "date": "2026-08-23",
+              "value": 4
+            },
+            {
+              "date": "2026-08-24",
+              "value": 5
+            },
+            {
+              "date": "2026-08-25",
+              "value": 5
+            },
+            {
+              "date": "2026-08-26",
+              "value": 12
+            },
+            {
+              "date": "2026-08-27",
+              "value": 7
+            },
+            {
+              "date": "2026-08-28",
+              "value": 7
+            },
+            {
+              "date": "2026-08-29",
+              "value": 7
+            },
+            {
+              "date": "2026-08-30",
+              "value": 7
+            },
+            {
+              "date": "2026-08-31",
+              "value": 7
+            },
+            {
+              "date": "2026-09-01",
+              "value": 7
+            },
+            {
+              "date": "2026-09-02",
+              "value": 13
+            },
+            {
+              "date": "2026-09-03",
+              "value": 6
+            },
+            {
+              "date": "2026-09-04",
+              "value": 6
+            },
+            {
+              "date": "2026-09-05",
+              "value": 5
+            },
+            {
+              "date": "2026-09-06",
+              "value": 4
+            },
+            {
+              "date": "2026-09-07",
+              "value": 4
+            },
+            {
+              "date": "2026-09-08",
+              "value": 3
+            },
+            {
+              "date": "2026-09-09",
+              "value": 8
+            },
+            {
+              "date": "2026-09-10",
+              "value": 1
+            },
+            {
+              "date": "2026-09-11",
+              "value": 1
+            },
+            {
+              "date": "2026-09-12",
+              "value": 0
+            },
+            {
+              "date": "2026-09-13",
+              "value": 0
+            },
+            {
+              "date": "2026-09-14",
+              "value": 0
+            },
+            {
+              "date": "2026-09-15",
+              "value": 0
+            },
+            {
+              "date": "2026-09-16",
+              "value": 6
+            },
+            {
+              "date": "2026-09-17",
+              "value": 0
+            },
+            {
+              "date": "2026-09-18",
+              "value": 0
+            },
+            {
+              "date": "2026-09-19",
+              "value": 1
+            },
+            {
+              "date": "2026-09-20",
+              "value": 1
+            },
+            {
+              "date": "2026-09-21",
+              "value": 2
+            },
+            {
+              "date": "2026-09-22",
+              "value": 3
+            },
+            {
+              "date": "2026-09-23",
+              "value": 10
+            },
+            {
+              "date": "2026-09-24",
+              "value": 4
+            },
+            {
+              "date": "2026-09-25",
+              "value": 5
+            },
+            {
+              "date": "2026-09-26",
+              "value": 6
+            },
+            {
+              "date": "2026-09-27",
+              "value": 6
+            },
+            {
+              "date": "2026-09-28",
+              "value": 7
+            },
+            {
+              "date": "2026-09-29",
+              "value": 7
+            },
+            {
+              "date": "2026-09-30",
+              "value": 13
+            },
+            {
+              "date": "2026-10-01",
+              "value": 7
+            },
+            {
+              "date": "2026-10-02",
+              "value": 7
+            },
+            {
+              "date": "2026-10-03",
+              "value": 7
+            },
+            {
+              "date": "2026-10-04",
+              "value": 7
+            },
+            {
+              "date": "2026-10-05",
+              "value": 6
+            },
+            {
+              "date": "2026-10-06",
+              "value": 5
+            },
+            {
+              "date": "2026-10-07",
+              "value": 11
+            },
+            {
+              "date": "2026-10-08",
+              "value": 4
+            },
+            {
+              "date": "2026-10-09",
+              "value": 3
+            },
+            {
+              "date": "2026-10-10",
+              "value": 2
+            },
+            {
+              "date": "2026-10-11",
+              "value": 2
+            },
+            {
+              "date": "2026-10-12",
+              "value": 1
+            },
+            {
+              "date": "2026-10-13",
+              "value": 0
+            },
+            {
+              "date": "2026-10-14",
+              "value": 6
+            },
+            {
+              "date": "2026-10-15",
+              "value": 0
+            },
+            {
+              "date": "2026-10-16",
+              "value": 0
+            },
+            {
+              "date": "2026-10-17",
+              "value": 0
+            },
+            {
+              "date": "2026-10-18",
+              "value": 0
+            },
+            {
+              "date": "2026-10-19",
+              "value": 0
+            },
+            {
+              "date": "2026-10-20",
+              "value": 0
+            },
+            {
+              "date": "2026-10-21",
+              "value": 7
+            },
+            {
+              "date": "2026-10-22",
+              "value": 2
+            },
+            {
+              "date": "2026-10-23",
+              "value": 3
+            },
+            {
+              "date": "2026-10-24",
+              "value": 3
+            },
+            {
+              "date": "2026-10-25",
+              "value": 4
+            },
+            {
+              "date": "2026-10-26",
+              "value": 5
+            },
+            {
+              "date": "2026-10-27",
+              "value": 6
+            },
+            {
+              "date": "2026-10-28",
+              "value": 12
+            },
+            {
+              "date": "2026-10-29",
+              "value": 7
+            },
+            {
+              "date": "2026-10-30",
+              "value": 7
+            },
+            {
+              "date": "2026-10-31",
+              "value": 7
+            },
+            {
+              "date": "2026-11-01",
+              "value": 7
+            },
+            {
+              "date": "2026-11-02",
+              "value": 7
+            },
+            {
+              "date": "2026-11-03",
+              "value": 7
+            },
+            {
+              "date": "2026-11-04",
+              "value": 13
+            },
+            {
+              "date": "2026-11-05",
+              "value": 6
+            },
+            {
+              "date": "2026-11-06",
+              "value": 6
+            },
+            {
+              "date": "2026-11-07",
+              "value": 5
+            },
+            {
+              "date": "2026-11-08",
+              "value": 4
+            },
+            {
+              "date": "2026-11-09",
+              "value": 3
+            },
+            {
+              "date": "2026-11-10",
+              "value": 3
+            },
+            {
+              "date": "2026-11-11",
+              "value": 8
+            },
+            {
+              "date": "2026-11-12",
+              "value": 1
+            },
+            {
+              "date": "2026-11-13",
+              "value": 1
+            },
+            {
+              "date": "2026-11-14",
+              "value": 0
+            },
+            {
+              "date": "2026-11-15",
+              "value": 0
+            },
+            {
+              "date": "2026-11-16",
+              "value": 0
+            },
+            {
+              "date": "2026-11-17",
+              "value": 0
+            },
+            {
+              "date": "2026-11-18",
+              "value": 6
+            }
+          ]
+        },
+        "children": []
+      },
+      "tabs": {
+        "type": "Tabs",
+        "props": {
+          "tabs": [
+            {
+              "label": "Timeline",
+              "icon": "activity",
+              "count": 5
+            },
+            {
+              "label": "Details",
+              "icon": "list"
+            },
+            {
+              "label": "Notes",
+              "icon": "pencil"
+            }
+          ]
+        },
+        "children": [
+          "tabTimeline",
+          "tabDetails",
+          "tabNotes"
+        ]
+      },
+      "tabTimeline": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "timeline"
+        ]
+      },
+      "timeline": {
+        "type": "Timeline",
+        "props": {
+          "label": "What happened",
+          "events": [
+            {
+              "day": "Today",
+              "time": "09:12",
+              "actor": "Matching",
+              "title": "confirmed 18 movements",
+              "tone": "success",
+              "url": "https://example.com/orders/1042"
+            },
+            {
+              "day": "Today",
+              "time": "08:40",
+              "actor": "Ana",
+              "title": "approved 6 documents",
+              "meta": "Invoices from Cloudflare and Figma"
+            },
+            {
+              "day": "Yesterday",
+              "time": "17:55",
+              "actor": "Reader",
+              "title": "could not read a receipt",
+              "tone": "danger",
+              "detail": "The photo was too dark. Upload it again or type the total."
+            },
+            {
+              "day": "Yesterday",
+              "time": "11:02",
+              "actor": "Liam",
+              "title": "closed October",
+              "meta": "Sent to the accountant"
+            }
+          ]
+        },
+        "children": []
+      },
+      "tabDetails": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "kv",
+          "list"
+        ]
+      },
+      "kv": {
+        "type": "KeyValue",
+        "props": {
+          "items": [
+            {
+              "label": "Company",
+              "value": "Example Lda",
+              "url": "https://example.com/account"
+            },
+            {
+              "label": "NIF",
+              "value": "503 504 564",
+              "copy": true
+            },
+            {
+              "label": "VAT period",
+              "value": "Quarterly"
+            },
+            {
+              "label": "Accountant",
+              "value": "Contas & Co"
+            }
+          ]
+        },
+        "children": []
+      },
+      "list": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Statement gaps",
+              "description": "Revolut has no statement for 3 days",
+              "meta": "3 days"
+            },
+            {
+              "title": "Billing fixes",
+              "description": "2 invoices billed to a person",
+              "meta": "2"
+            },
+            {
+              "title": "API docs",
+              "description": "Every procedure over REST",
+              "url": "https://example.com/api/docs"
+            }
+          ]
+        },
+        "children": []
+      },
+      "tabNotes": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "md"
+        ]
+      },
+      "md": {
+        "type": "Markdown",
+        "props": {
+          "text": "### Close checklist\n\n1. Import the **Santander** and **Revolut** statements.\n2. Review documents still in *review*.\n3. Send the month to the accountant.\n\n| Step | Owner |\n| --- | --- |\n| Statements | Ana |\n| Review | Liam |\n\n> Months close on the 10th."
+        },
+        "children": []
+      },
+      "section": {
+        "type": "Section",
+        "props": {
+          "title": "Interactive blocks",
+          "open": true
+        },
+        "children": [
+          "interGrid"
+        ]
+      },
+      "interGrid": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "interLeft",
+          "interRight"
+        ]
+      },
+      "interLeft": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "checklist",
+          "toggle"
+        ]
+      },
+      "checklist": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/tasks"
+          }
+        },
+        "children": []
+      },
+      "toggle": {
+        "type": "Toggle",
+        "props": {
+          "label": "Email the accountant when closed",
+          "description": "Saved with the page",
+          "checked": {
+            "$bindState": "/emailOnClose"
+          }
+        },
+        "children": []
+      },
+      "interRight": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "select",
+          "notes"
+        ]
+      },
+      "select": {
+        "type": "Select",
+        "props": {
+          "label": "Owner",
+          "value": {
+            "$bindState": "/owner"
+          },
+          "options": [
+            {
+              "value": "ana",
+              "label": "Ana"
+            },
+            {
+              "value": "liam",
+              "label": "Liam"
+            },
+            {
+              "value": "accountant",
+              "label": "Accountant"
+            }
+          ]
+        },
+        "children": []
+      },
+      "notes": {
+        "type": "Notes",
+        "props": {
+          "label": "Notes",
+          "placeholder": "Anything the next person should know",
+          "value": {
+            "$bindState": "/notes"
+          }
+        },
+        "children": []
+      },
+      "statusRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "s1",
+          "s2",
+          "s3"
+        ]
+      },
+      "s1": {
+        "type": "Status",
+        "props": {
+          "label": "Bank sync",
+          "state": "success",
+          "description": "Updated 5 minutes ago"
+        },
+        "children": []
+      },
+      "s2": {
+        "type": "Status",
+        "props": {
+          "label": "Mirror",
+          "state": "default",
+          "description": "Runs at 02:30"
+        },
+        "children": []
+      },
+      "s3": {
+        "type": "Status",
+        "props": {
+          "label": "Accounting platform",
+          "state": "destructive",
+          "description": "Sign-in expired"
+        },
+        "children": []
+      },
+      "alert1": {
+        "type": "Alert",
+        "props": {
+          "title": "October is closed",
+          "description": "The export went to the accountant on 10 Nov.",
+          "variant": "success"
+        },
+        "children": []
+      },
+      "alert2": {
+        "type": "Alert",
+        "props": {
+          "title": "2 invoices are billed to a person",
+          "description": "Fix the bill-to before closing November.",
+          "variant": "warning"
+        },
+        "children": []
+      },
+      "image": {
+        "type": "Image",
+        "props": {
+          "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200",
+          "alt": "A dashboard on a laptop",
+          "caption": "Images load from any https link"
+        },
+        "children": []
+      },
+      "sep": {
+        "type": "Separator",
+        "props": {},
+        "children": []
+      },
+      "footer": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "sm"
+        },
+        "children": [
+          "link"
+        ]
+      },
+      "link": {
+        "type": "LinkButton",
+        "props": {
+          "label": "Open the dashboard",
+          "url": "https://example.com"
+        },
+        "children": []
+      },
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "kpis",
+          "cashCard",
+          "row2",
+          "row3",
+          "row4",
+          "tableCard",
+          "movements",
+          "row5",
+          "heatCard",
+          "tabsCard",
+          "stepsCard",
+          "moreHeading",
+          "boardCard",
+          "planRow",
+          "facesCard",
+          "featuresCard",
+          "iconsCard",
+          "compareCard",
+          "helpRow",
+          "mediaRow",
+          "section",
+          "statusRow",
+          "alert1",
+          "alert2",
+          "image",
+          "sep",
+          "htmlCard",
+          "footer"
+        ]
+      },
+      "tabsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗒️ Log and details",
+          "description": "Tabs hold a timeline, key values, a list and markdown"
+        },
+        "children": [
+          "tabs"
+        ]
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "Bank accounts",
+              "value": 4,
+              "context": "Santander, Revolut, Wise, Millennium"
+            },
+            {
+              "label": "Documents this year",
+              "value": 1284,
+              "context": "Up from 1,032 last year"
+            },
+            {
+              "label": "Matched",
+              "value": 94.2,
+              "suffix": "%",
+              "context": "Of 3,118 bank movements"
+            },
+            {
+              "label": "Days to close",
+              "value": 3.5,
+              "suffix": "days",
+              "context": "Median over 2026"
+            }
+          ]
+        },
+        "children": []
+      },
+      "movements": {
+        "type": "DataTable",
+        "props": {
+          "title": "Bank movements",
+          "description": "September to November, newest first",
+          "columns": [
+            {
+              "key": "date",
+              "label": "Date",
+              "type": "date"
+            },
+            {
+              "key": "vendor",
+              "label": "Vendor"
+            },
+            {
+              "key": "category",
+              "label": "Category"
+            },
+            {
+              "key": "status",
+              "label": "Status",
+              "type": "badge",
+              "tones": {
+                "✅ Matched": "success",
+                "💡 Proposed": "info",
+                "⏳ Open": "warning",
+                "🙈 Ignored": "neutral"
+              }
+            },
+            {
+              "key": "confidence",
+              "label": "Match",
+              "type": "progress"
+            },
+            {
+              "key": "document",
+              "label": "Document",
+              "type": "link",
+              "labelKey": "ref"
+            },
+            {
+              "key": "vat",
+              "label": "VAT",
+              "type": "percent"
+            },
+            {
+              "key": "amount",
+              "label": "Amount",
+              "type": "money",
+              "currency": "EUR"
+            }
+          ],
+          "rows": [
+            {
+              "date": "2026-11-28",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": 50.0,
+              "vat": 23,
+              "confidence": 98,
+              "document": "https://example.com/documents/2600",
+              "ref": "FT 2600"
+            },
+            {
+              "date": "2026-11-27",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -49.99,
+              "vat": 23,
+              "confidence": 91,
+              "document": "https://example.com/documents/2601",
+              "ref": "FT 2601"
+            },
+            {
+              "date": "2026-11-26",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "💡 Proposed",
+              "amount": -87.48,
+              "vat": 6,
+              "confidence": 76,
+              "document": "https://example.com/documents/2602",
+              "ref": "FT 2602"
+            },
+            {
+              "date": "2026-11-25",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -123.5,
+              "vat": 13,
+              "confidence": 100,
+              "document": "https://example.com/documents/2603",
+              "ref": "FT 2603"
+            },
+            {
+              "date": "2026-11-24",
+              "vendor": "Figma",
+              "category": "Software",
+              "account": "Santander",
+              "status": "🙈 Ignored",
+              "amount": -160.99,
+              "vat": 0,
+              "confidence": null,
+              "document": "https://example.com/documents/2604",
+              "ref": "FT 2604"
+            },
+            {
+              "date": "2026-11-23",
+              "vendor": "Continente",
+              "category": "Office",
+              "account": "Revolut",
+              "status": "⏳ Open",
+              "amount": -198.48,
+              "vat": 23,
+              "confidence": 88,
+              "document": "https://example.com/documents/2605",
+              "ref": "FT 2605"
+            },
+            {
+              "date": "2026-11-22",
+              "vendor": "GitHub",
+              "category": "Software",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -234.5,
+              "vat": 23,
+              "confidence": 98,
+              "document": "https://example.com/documents/2606",
+              "ref": "FT 2606"
+            },
+            {
+              "date": "2026-11-21",
+              "vendor": "Cloudflare",
+              "category": "Hosting",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -271.99,
+              "vat": 6,
+              "confidence": 91,
+              "document": "https://example.com/documents/2607",
+              "ref": "FT 2607"
+            },
+            {
+              "date": "2026-11-20",
+              "vendor": "EDP",
+              "category": "Utilities",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -309.48,
+              "vat": 13,
+              "confidence": 76,
+              "document": "https://example.com/documents/2608",
+              "ref": "FT 2608"
+            },
+            {
+              "date": "2026-11-19",
+              "vendor": "Google Workspace",
+              "category": "Software",
+              "account": "Revolut",
+              "status": "💡 Proposed",
+              "amount": 1382.0,
+              "vat": 0,
+              "confidence": 100,
+              "document": "https://example.com/documents/2609",
+              "ref": "FT 2609"
+            },
+            {
+              "date": "2026-11-18",
+              "vendor": "TAP",
+              "category": "Travel",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -382.99,
+              "vat": 23,
+              "confidence": 64,
+              "document": "https://example.com/documents/2610",
+              "ref": "FT 2610"
+            },
+            {
+              "date": "2026-11-17",
+              "vendor": "Linear",
+              "category": "Software",
+              "account": "Millennium",
+              "status": "🙈 Ignored",
+              "amount": -420.48,
+              "vat": 23,
+              "confidence": null,
+              "document": "https://example.com/documents/2611",
+              "ref": "FT 2611"
+            },
+            {
+              "date": "2026-11-16",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "⏳ Open",
+              "amount": -456.5,
+              "vat": 6,
+              "confidence": 98,
+              "document": "https://example.com/documents/2612",
+              "ref": "FT 2612"
+            },
+            {
+              "date": "2026-11-15",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -493.99,
+              "vat": 13,
+              "confidence": 91,
+              "document": "https://example.com/documents/2613",
+              "ref": "FT 2613"
+            },
+            {
+              "date": "2026-11-14",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -531.48,
+              "vat": 0,
+              "confidence": 76,
+              "document": "https://example.com/documents/2614",
+              "ref": "FT 2614"
+            },
+            {
+              "date": "2026-11-13",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -567.5,
+              "vat": 23,
+              "confidence": 100,
+              "document": "https://example.com/documents/2615",
+              "ref": "FT 2615"
+            },
+            {
+              "date": "2026-11-12",
+              "vendor": "Figma",
+              "category": "Software",
+              "account": "Santander",
+              "status": "💡 Proposed",
+              "amount": -604.99,
+              "vat": 23,
+              "confidence": 64,
+              "document": "https://example.com/documents/2616",
+              "ref": "FT 2616"
+            },
+            {
+              "date": "2026-11-11",
+              "vendor": "Continente",
+              "category": "Office",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -642.48,
+              "vat": 6,
+              "confidence": 88,
+              "document": "https://example.com/documents/2617",
+              "ref": "FT 2617"
+            },
+            {
+              "date": "2026-11-10",
+              "vendor": "GitHub",
+              "category": "Software",
+              "account": "Wise",
+              "status": "🙈 Ignored",
+              "amount": 2714.0,
+              "vat": 13,
+              "confidence": null,
+              "document": "https://example.com/documents/2618",
+              "ref": "FT 2618"
+            },
+            {
+              "date": "2026-11-09",
+              "vendor": "Cloudflare",
+              "category": "Hosting",
+              "account": "Millennium",
+              "status": "⏳ Open",
+              "amount": -715.99,
+              "vat": 0,
+              "confidence": 91,
+              "document": "https://example.com/documents/2619",
+              "ref": "FT 2619"
+            },
+            {
+              "date": "2026-11-08",
+              "vendor": "EDP",
+              "category": "Utilities",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -753.48,
+              "vat": 23,
+              "confidence": 76,
+              "document": "https://example.com/documents/2620",
+              "ref": "FT 2620"
+            },
+            {
+              "date": "2026-11-07",
+              "vendor": "Google Workspace",
+              "category": "Software",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -789.5,
+              "vat": 23,
+              "confidence": 100,
+              "document": "https://example.com/documents/2621",
+              "ref": "FT 2621"
+            },
+            {
+              "date": "2026-11-06",
+              "vendor": "TAP",
+              "category": "Travel",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -826.99,
+              "vat": 6,
+              "confidence": 64,
+              "document": "https://example.com/documents/2622",
+              "ref": "FT 2622"
+            },
+            {
+              "date": "2026-11-05",
+              "vendor": "Linear",
+              "category": "Software",
+              "account": "Millennium",
+              "status": "💡 Proposed",
+              "amount": -864.48,
+              "vat": 13,
+              "confidence": 88,
+              "document": "https://example.com/documents/2623",
+              "ref": "FT 2623"
+            },
+            {
+              "date": "2026-11-04",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -900.5,
+              "vat": 0,
+              "confidence": 98,
+              "document": "https://example.com/documents/2624",
+              "ref": "FT 2624"
+            },
+            {
+              "date": "2026-11-03",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "🙈 Ignored",
+              "amount": -37.99,
+              "vat": 23,
+              "confidence": null,
+              "document": "https://example.com/documents/2625",
+              "ref": "FT 2625"
+            },
+            {
+              "date": "2026-11-02",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "⏳ Open",
+              "amount": -75.48,
+              "vat": 23,
+              "confidence": 76,
+              "document": "https://example.com/documents/2626",
+              "ref": "FT 2626"
+            },
+            {
+              "date": "2026-11-01",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": 446.0,
+              "vat": 6,
+              "confidence": 100,
+              "document": "https://example.com/documents/2627",
+              "ref": "FT 2627"
+            },
+            {
+              "date": "2026-10-28",
+              "vendor": "Figma",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -148.99,
+              "vat": 13,
+              "confidence": 64,
+              "document": "https://example.com/documents/2628",
+              "ref": "FT 2628"
+            },
+            {
+              "date": "2026-10-27",
+              "vendor": "Continente",
+              "category": "Office",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -186.48,
+              "vat": 0,
+              "confidence": 88,
+              "document": "https://example.com/documents/2629",
+              "ref": "FT 2629"
+            },
+            {
+              "date": "2026-10-26",
+              "vendor": "GitHub",
+              "category": "Software",
+              "account": "Wise",
+              "status": "💡 Proposed",
+              "amount": -222.5,
+              "vat": 23,
+              "confidence": 98,
+              "document": "https://example.com/documents/2630",
+              "ref": "FT 2630"
+            },
+            {
+              "date": "2026-10-25",
+              "vendor": "Cloudflare",
+              "category": "Hosting",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -259.99,
+              "vat": 23,
+              "confidence": 91,
+              "document": "https://example.com/documents/2631",
+              "ref": "FT 2631"
+            },
+            {
+              "date": "2026-10-24",
+              "vendor": "EDP",
+              "category": "Utilities",
+              "account": "Santander",
+              "status": "🙈 Ignored",
+              "amount": -297.48,
+              "vat": 6,
+              "confidence": null,
+              "document": "https://example.com/documents/2632",
+              "ref": "FT 2632"
+            },
+            {
+              "date": "2026-10-23",
+              "vendor": "Google Workspace",
+              "category": "Software",
+              "account": "Revolut",
+              "status": "⏳ Open",
+              "amount": -333.5,
+              "vat": 13,
+              "confidence": 100,
+              "document": "https://example.com/documents/2633",
+              "ref": "FT 2633"
+            },
+            {
+              "date": "2026-10-22",
+              "vendor": "TAP",
+              "category": "Travel",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -370.99,
+              "vat": 0,
+              "confidence": 64,
+              "document": "https://example.com/documents/2634",
+              "ref": "FT 2634"
+            },
+            {
+              "date": "2026-10-21",
+              "vendor": "Linear",
+              "category": "Software",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -408.48,
+              "vat": 23,
+              "confidence": 88,
+              "document": "https://example.com/documents/2635",
+              "ref": "FT 2635"
+            },
+            {
+              "date": "2026-10-20",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": 1778.0,
+              "vat": 23,
+              "confidence": 98,
+              "document": "https://example.com/documents/2636",
+              "ref": "FT 2636"
+            },
+            {
+              "date": "2026-10-19",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "💡 Proposed",
+              "amount": -481.99,
+              "vat": 6,
+              "confidence": 91,
+              "document": "https://example.com/documents/2637",
+              "ref": "FT 2637"
+            },
+            {
+              "date": "2026-10-18",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -519.48,
+              "vat": 13,
+              "confidence": 76,
+              "document": "https://example.com/documents/2638",
+              "ref": "FT 2638"
+            },
+            {
+              "date": "2026-10-17",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "🙈 Ignored",
+              "amount": -555.5,
+              "vat": 0,
+              "confidence": null,
+              "document": "https://example.com/documents/2639",
+              "ref": "FT 2639"
+            },
+            {
+              "date": "2026-10-16",
+              "vendor": "Figma",
+              "category": "Software",
+              "account": "Santander",
+              "status": "⏳ Open",
+              "amount": -592.99,
+              "vat": 23,
+              "confidence": 64,
+              "document": "https://example.com/documents/2640",
+              "ref": "FT 2640"
+            },
+            {
+              "date": "2026-10-15",
+              "vendor": "Continente",
+              "category": "Office",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -630.48,
+              "vat": 23,
+              "confidence": 88,
+              "document": "https://example.com/documents/2641",
+              "ref": "FT 2641"
+            },
+            {
+              "date": "2026-10-14",
+              "vendor": "GitHub",
+              "category": "Software",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -666.5,
+              "vat": 6,
+              "confidence": 98,
+              "document": "https://example.com/documents/2642",
+              "ref": "FT 2642"
+            },
+            {
+              "date": "2026-10-13",
+              "vendor": "Cloudflare",
+              "category": "Hosting",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -703.99,
+              "vat": 13,
+              "confidence": 91,
+              "document": "https://example.com/documents/2643",
+              "ref": "FT 2643"
+            },
+            {
+              "date": "2026-10-12",
+              "vendor": "EDP",
+              "category": "Utilities",
+              "account": "Santander",
+              "status": "💡 Proposed",
+              "amount": -741.48,
+              "vat": 0,
+              "confidence": 76,
+              "document": "https://example.com/documents/2644",
+              "ref": "FT 2644"
+            },
+            {
+              "date": "2026-10-11",
+              "vendor": "Google Workspace",
+              "category": "Software",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": 3110.0,
+              "vat": 23,
+              "confidence": 100,
+              "document": "https://example.com/documents/2645",
+              "ref": "FT 2645"
+            },
+            {
+              "date": "2026-10-10",
+              "vendor": "TAP",
+              "category": "Travel",
+              "account": "Wise",
+              "status": "🙈 Ignored",
+              "amount": -814.99,
+              "vat": 23,
+              "confidence": null,
+              "document": "https://example.com/documents/2646",
+              "ref": "FT 2646"
+            },
+            {
+              "date": "2026-10-09",
+              "vendor": "Linear",
+              "category": "Software",
+              "account": "Millennium",
+              "status": "⏳ Open",
+              "amount": -852.48,
+              "vat": 6,
+              "confidence": 88,
+              "document": "https://example.com/documents/2647",
+              "ref": "FT 2647"
+            },
+            {
+              "date": "2026-10-08",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -888.5,
+              "vat": 13,
+              "confidence": 98,
+              "document": "https://example.com/documents/2648",
+              "ref": "FT 2648"
+            },
+            {
+              "date": "2026-10-07",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -25.99,
+              "vat": 0,
+              "confidence": 91,
+              "document": "https://example.com/documents/2649",
+              "ref": "FT 2649"
+            },
+            {
+              "date": "2026-10-06",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -63.48,
+              "vat": 23,
+              "confidence": 76,
+              "document": "https://example.com/documents/2650",
+              "ref": "FT 2650"
+            },
+            {
+              "date": "2026-10-05",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "💡 Proposed",
+              "amount": -99.5,
+              "vat": 23,
+              "confidence": 100,
+              "document": "https://example.com/documents/2651",
+              "ref": "FT 2651"
+            },
+            {
+              "date": "2026-10-04",
+              "vendor": "Figma",
+              "category": "Software",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -136.99,
+              "vat": 6,
+              "confidence": 64,
+              "document": "https://example.com/documents/2652",
+              "ref": "FT 2652"
+            },
+            {
+              "date": "2026-10-03",
+              "vendor": "Continente",
+              "category": "Office",
+              "account": "Revolut",
+              "status": "🙈 Ignored",
+              "amount": -174.48,
+              "vat": 13,
+              "confidence": null,
+              "document": "https://example.com/documents/2653",
+              "ref": "FT 2653"
+            },
+            {
+              "date": "2026-10-02",
+              "vendor": "GitHub",
+              "category": "Software",
+              "account": "Wise",
+              "status": "⏳ Open",
+              "amount": 842.0,
+              "vat": 0,
+              "confidence": 98,
+              "document": "https://example.com/documents/2654",
+              "ref": "FT 2654"
+            },
+            {
+              "date": "2026-10-01",
+              "vendor": "Cloudflare",
+              "category": "Hosting",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -247.99,
+              "vat": 23,
+              "confidence": 91,
+              "document": "https://example.com/documents/2655",
+              "ref": "FT 2655"
+            },
+            {
+              "date": "2026-09-28",
+              "vendor": "EDP",
+              "category": "Utilities",
+              "account": "Santander",
+              "status": "✅ Matched",
+              "amount": -285.48,
+              "vat": 23,
+              "confidence": 76,
+              "document": "https://example.com/documents/2656",
+              "ref": "FT 2656"
+            },
+            {
+              "date": "2026-09-27",
+              "vendor": "Google Workspace",
+              "category": "Software",
+              "account": "Revolut",
+              "status": "✅ Matched",
+              "amount": -321.5,
+              "vat": 6,
+              "confidence": 100,
+              "document": "https://example.com/documents/2657",
+              "ref": "FT 2657"
+            },
+            {
+              "date": "2026-09-26",
+              "vendor": "TAP",
+              "category": "Travel",
+              "account": "Wise",
+              "status": "💡 Proposed",
+              "amount": -358.99,
+              "vat": 13,
+              "confidence": 64,
+              "document": "https://example.com/documents/2658",
+              "ref": "FT 2658"
+            },
+            {
+              "date": "2026-09-25",
+              "vendor": "Linear",
+              "category": "Software",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": -396.48,
+              "vat": 0,
+              "confidence": 88,
+              "document": "https://example.com/documents/2659",
+              "ref": "FT 2659"
+            },
+            {
+              "date": "2026-09-24",
+              "vendor": "Anthropic",
+              "category": "Software",
+              "account": "Santander",
+              "status": "🙈 Ignored",
+              "amount": -432.5,
+              "vat": 23,
+              "confidence": null,
+              "document": "https://example.com/documents/2660",
+              "ref": "FT 2660"
+            },
+            {
+              "date": "2026-09-23",
+              "vendor": "Vodafone",
+              "category": "Utilities",
+              "account": "Revolut",
+              "status": "⏳ Open",
+              "amount": -469.99,
+              "vat": 23,
+              "confidence": 91,
+              "document": "https://example.com/documents/2661",
+              "ref": "FT 2661"
+            },
+            {
+              "date": "2026-09-22",
+              "vendor": "Hetzner",
+              "category": "Hosting",
+              "account": "Wise",
+              "status": "✅ Matched",
+              "amount": -507.48,
+              "vat": 6,
+              "confidence": 76,
+              "document": "https://example.com/documents/2662",
+              "ref": "FT 2662"
+            },
+            {
+              "date": "2026-09-21",
+              "vendor": "Uber",
+              "category": "Travel",
+              "account": "Millennium",
+              "status": "✅ Matched",
+              "amount": 2174.0,
+              "vat": 13,
+              "confidence": 100,
+              "document": "https://example.com/documents/2663",
+              "ref": "FT 2663"
+            }
+          ],
+          "pageSize": 10,
+          "sort": {
+            "key": "date",
+            "direction": "desc"
+          },
+          "filters": [
+            {
+              "key": "status"
+            },
+            {
+              "key": "category"
+            }
+          ]
+        },
+        "children": []
+      },
+      "steps": {
+        "type": "Steps",
+        "props": {
+          "current": 2,
+          "steps": [
+            {
+              "title": "Import statements",
+              "description": "All four banks"
+            },
+            {
+              "title": "Read documents",
+              "description": "50 of 50 read"
+            },
+            {
+              "title": "Match movements",
+              "description": "64% matched so far"
+            },
+            {
+              "title": "Review VAT"
+            },
+            {
+              "title": "Send to accountant"
+            }
+          ]
+        },
+        "children": []
+      },
+      "stepsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧭 November close",
+          "description": "Where the month stands"
+        },
+        "children": [
+          "steps"
+        ]
+      },
+      "countdown": {
+        "type": "Countdown",
+        "props": {
+          "to": "2027-02-20T23:59:00+00:00",
+          "title": "Q4 VAT return due in",
+          "doneText": "The deadline has passed"
+        },
+        "children": []
+      },
+      "countdownCard": {
+        "type": "Card",
+        "props": {
+          "title": "⏰ VAT deadline"
+        },
+        "children": [
+          "countdown"
+        ]
+      },
+      "board": {
+        "type": "Kanban",
+        "props": {
+          "columns": [
+            {
+              "title": "To do",
+              "cards": [
+                {
+                  "title": "Ask Wise for the October statement",
+                  "tags": [
+                    {
+                      "text": "Bank",
+                      "tone": "info"
+                    }
+                  ],
+                  "meta": "Due 21 Nov",
+                  "assignee": "Ana Silva",
+                  "url": "https://example.com/issues/12"
+                },
+                {
+                  "title": "Bill-to fix for FT 2026/121",
+                  "description": "Invoice was issued to a person, not the company.",
+                  "tags": [
+                    {
+                      "text": "Invoice",
+                      "tone": "danger"
+                    }
+                  ],
+                  "assignee": "Rui Costa"
+                }
+              ]
+            },
+            {
+              "title": "Doing",
+              "tone": "info",
+              "cards": [
+                {
+                  "title": "Match Revolut card payments",
+                  "description": "38 left, mostly travel.",
+                  "tags": [
+                    {
+                      "text": "Matching"
+                    }
+                  ],
+                  "meta": "64%",
+                  "assignee": "Ana Silva"
+                }
+              ]
+            },
+            {
+              "title": "Waiting",
+              "tone": "warning",
+              "cards": [
+                {
+                  "title": "Accountant to confirm VAT on Figma",
+                  "tags": [
+                    {
+                      "text": "VAT",
+                      "tone": "warning"
+                    }
+                  ],
+                  "meta": "Asked 14 Nov"
+                }
+              ]
+            },
+            {
+              "title": "Done",
+              "tone": "success",
+              "cards": [
+                {
+                  "title": "Import Santander statement",
+                  "assignee": "Rui Costa"
+                },
+                {
+                  "title": "Read 50 documents",
+                  "tags": [
+                    {
+                      "text": "Docs",
+                      "tone": "success"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "children": []
+      },
+      "boardCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗂️ Close board",
+          "description": "Who is doing what this week"
+        },
+        "children": [
+          "board"
+        ]
+      },
+      "agenda": {
+        "type": "Agenda",
+        "props": {
+          "events": [
+            {
+              "date": "2026-11-20",
+              "time": "10:00–10:30",
+              "title": "Close check-in",
+              "location": "Google Meet",
+              "tone": "info",
+              "url": "https://example.com/booking/88"
+            },
+            {
+              "date": "2026-11-20",
+              "time": "15:00",
+              "title": "Send October export",
+              "description": "SAF-T and the bank reconciliation."
+            },
+            {
+              "date": "2026-11-24",
+              "title": "Payroll",
+              "tone": "success"
+            },
+            {
+              "date": "2026-11-28",
+              "time": "09:30",
+              "title": "Accountant meeting",
+              "location": "Rua Augusta 120, Lisboa",
+              "tone": "warning"
+            },
+            {
+              "date": "2026-12-01",
+              "title": "December opens"
+            }
+          ]
+        },
+        "children": []
+      },
+      "agendaCard": {
+        "type": "Card",
+        "props": {
+          "title": "🗓️ Next two weeks"
+        },
+        "children": [
+          "agenda"
+        ]
+      },
+      "team": {
+        "type": "People",
+        "props": {
+          "people": [
+            {
+              "name": "Ana Silva",
+              "role": "Finance lead",
+              "status": "Owner",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=AnaSilva",
+              "url": "https://example.com/people/1",
+              "roleUrl": "https://example.com/teams/design"
+            },
+            {
+              "name": "Rui Costa",
+              "role": "Operations",
+              "url": "https://example.com/rui",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=RuiCosta"
+            },
+            {
+              "name": "Marta Lopes",
+              "role": "Accountant, external",
+              "status": "Away"
+            }
+          ]
+        },
+        "children": []
+      },
+      "watchers": {
+        "type": "People",
+        "props": {
+          "layout": "stack",
+          "max": 4,
+          "people": [
+            {
+              "name": "Ana Silva",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=AnaSilva",
+              "url": "https://example.com/people/1",
+              "roleUrl": "https://example.com/teams/design"
+            },
+            {
+              "name": "Rui Costa",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=RuiCosta"
+            },
+            {
+              "name": "Marta Lopes",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=MartaLopes"
+            },
+            {
+              "name": "João Pereira",
+              "avatar": "https://api.dicebear.com/9.x/notionists/svg?seed=JoãoPereira"
+            },
+            {
+              "name": "Inês Martins"
+            },
+            {
+              "name": "Tiago Rocha"
+            }
+          ]
+        },
+        "children": []
+      },
+      "peopleCard": {
+        "type": "Card",
+        "props": {
+          "title": "👥 People"
+        },
+        "children": [
+          "team",
+          "watchers"
+        ]
+      },
+      "planRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "agendaCard",
+          "planRight"
+        ]
+      },
+      "features": {
+        "type": "Features",
+        "props": {
+          "columns": "3",
+          "items": [
+            {
+              "icon": "banknote",
+              "title": "Four bank accounts",
+              "text": "Statements import every night and match to documents.",
+              "url": "https://example.com/features"
+            },
+            {
+              "icon": "file-text",
+              "title": "Every document",
+              "text": "Invoices and receipts are read and filed by vendor."
+            },
+            {
+              "icon": "shield",
+              "title": "VAT checks",
+              "text": "Rates and exemptions are checked before the return."
+            },
+            {
+              "icon": "users",
+              "title": "Shared with the accountant",
+              "text": "A monthly export with the SAF-T file."
+            },
+            {
+              "icon": "trending-up",
+              "title": "Cash flow",
+              "text": "Money in and out per month, per account."
+            },
+            {
+              "icon": "bell",
+              "title": "Alerts",
+              "text": "Missing statements and late invoices show up here."
+            }
+          ]
+        },
+        "children": []
+      },
+      "featuresCard": {
+        "type": "Card",
+        "props": {
+          "title": "📚 What the books cover"
+        },
+        "children": [
+          "features"
+        ]
+      },
+      "compare": {
+        "type": "Comparison",
+        "props": {
+          "options": [
+            {
+              "name": "Current",
+              "price": "€90",
+              "period": "/month",
+              "description": "Bookkeeping only",
+              "url": "https://example.com/plans/basic"
+            },
+            {
+              "name": "Full service",
+              "price": "€180",
+              "period": "/month",
+              "description": "Bookkeeping, payroll and VAT",
+              "highlight": true
+            },
+            {
+              "name": "Self-serve",
+              "price": "€35",
+              "period": "/month",
+              "description": "Software, we do the work"
+            }
+          ],
+          "rows": [
+            {
+              "label": "Monthly bookkeeping",
+              "values": [
+                true,
+                true,
+                false
+              ]
+            },
+            {
+              "label": "VAT returns",
+              "values": [
+                false,
+                true,
+                false
+              ]
+            },
+            {
+              "label": "Payroll",
+              "hint": "Up to 5 people",
+              "values": [
+                false,
+                true,
+                false
+              ]
+            },
+            {
+              "label": "Annual accounts",
+              "values": [
+                "€600 extra",
+                true,
+                "€900 extra"
+              ]
+            },
+            {
+              "label": "Response time",
+              "values": [
+                "2 days",
+                "Same day",
+                "Email only"
+              ]
+            }
+          ]
+        },
+        "children": []
+      },
+      "compareCard": {
+        "type": "Card",
+        "props": {
+          "title": "⚖️ Accounting plans",
+          "description": "What we pay now against the two alternatives"
+        },
+        "children": [
+          "compare"
+        ]
+      },
+      "faq1": {
+        "type": "Text",
+        "props": {
+          "text": "When every movement is matched or explained, VAT is reviewed and the export has gone to the accountant.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "faq2": {
+        "type": "Text",
+        "props": {
+          "text": "Anyone with the link. Private notes stay in the Notes box, which saves with the page.",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "faq3": {
+        "type": "Code",
+        "props": {
+          "language": "bash",
+          "filename": "export.sh",
+          "code": "# Export November for the accountant\nbun scripts/export.ts --month 2026-11 --format saft\n"
+        },
+        "children": []
+      },
+      "faq": {
+        "type": "Accordion",
+        "props": {
+          "items": [
+            {
+              "title": "When is a month closed?",
+              "icon": "calendar"
+            },
+            {
+              "title": "Who can see this page?",
+              "icon": "lock"
+            },
+            {
+              "title": "How do I export for the accountant?",
+              "icon": "package"
+            }
+          ]
+        },
+        "children": [
+          "faq1",
+          "faq2",
+          "faq3"
+        ]
+      },
+      "faqCard": {
+        "type": "Card",
+        "props": {
+          "title": "❓ Questions"
+        },
+        "children": [
+          "faq"
+        ]
+      },
+      "code": {
+        "type": "Code",
+        "props": {
+          "language": "ts",
+          "filename": "match-rules.ts",
+          "maxLines": 8,
+          "code": "// Movements below this amount match on vendor alone\nexport const MATCHING = {\n  smallAmount: 25,\n  windowDays: 7,\n  vendors: ['Anthropic', 'Cloudflare', 'Hetzner'],\n};\n\nexport function matchScore(amount: number, days: number) {\n  const close = Math.max(0, 1 - days / MATCHING.windowDays);\n\n  return amount < MATCHING.smallAmount ? 1 : close;\n}\n"
+        },
+        "children": []
+      },
+      "quote": {
+        "type": "Quote",
+        "props": {
+          "text": "Close the books every month, not every year. The year then closes itself.",
+          "author": "Marta Lopes",
+          "source": "Accountant"
+        },
+        "children": []
+      },
+      "codeStack": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "code",
+          "quote"
+        ]
+      },
+      "helpRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "faqCard",
+          "codeStack"
+        ]
+      },
+      "video": {
+        "type": "Video",
+        "props": {
+          "url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+          "title": "Matching walkthrough",
+          "caption": "Two minutes on how bank movements meet their documents."
+        },
+        "children": []
+      },
+      "videoCard": {
+        "type": "Card",
+        "props": {
+          "title": "🎬 How matching works"
+        },
+        "children": [
+          "video"
+        ]
+      },
+      "files": {
+        "type": "Files",
+        "props": {
+          "columns": "1",
+          "items": [
+            {
+              "title": "October SAF-T",
+              "url": "https://example.com/saft-2026-10.xml",
+              "kind": "code",
+              "meta": "1.2 MB"
+            },
+            {
+              "title": "Bank reconciliation",
+              "url": "https://docs.google.com/spreadsheets/d/example",
+              "kind": "sheet",
+              "description": "Every account, month by month.",
+              "meta": "Updated 10 Nov"
+            },
+            {
+              "title": "Q3 VAT return",
+              "url": "https://example.com/vat-q3.pdf",
+              "kind": "pdf",
+              "meta": "240 KB"
+            },
+            {
+              "title": "Close process",
+              "url": "https://www.notion.so/example",
+              "kind": "doc",
+              "description": "The steps above, in detail."
+            }
+          ]
+        },
+        "children": []
+      },
+      "filesCard": {
+        "type": "Card",
+        "props": {
+          "title": "📁 Files"
+        },
+        "children": [
+          "files"
+        ]
+      },
+      "mediaRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "videoCard",
+          "filesCard"
+        ]
+      },
+      "planRight": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "peopleCard",
+          "countdownCard"
+        ]
+      },
+      "moreHeading": {
+        "type": "Heading",
+        "props": {
+          "text": "More ways to show things",
+          "level": "2"
+        },
+        "children": []
+      },
+      "invoiceFilter": {
+        "type": "Filters",
+        "props": {
+          "label": "Invoice status",
+          "value": {
+            "$bindState": "/invoiceStatus"
+          },
+          "options": [
+            {
+              "value": "Paid",
+              "emoji": "✅",
+              "count": 2
+            },
+            {
+              "value": "Due",
+              "emoji": "⏳",
+              "count": 3
+            },
+            {
+              "value": "Draft",
+              "emoji": "📝",
+              "count": 2
+            }
+          ]
+        },
+        "children": []
+      },
+      "facesCard": {
+        "type": "Card",
+        "props": {
+          "title": "🙂 Faces and menus",
+          "description": "Avatar, AvatarGroup and a Dropdown of links"
+        },
+        "children": [
+          "facesRow",
+          "linksMenu"
+        ]
+      },
+      "facesRow": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "lg"
+        },
+        "children": [
+          "avatarAna",
+          "avatarRui",
+          "avatarBot",
+          "crew"
+        ]
+      },
+      "avatarAna": {
+        "type": "Avatar",
+        "props": {
+          "name": "Ana Silva",
+          "src": "https://api.dicebear.com/9.x/notionists/svg?seed=AnaSilva",
+          "description": "Finance lead",
+          "size": "lg",
+          "tone": "success",
+          "url": "https://example.com/people/ana"
+        },
+        "children": []
+      },
+      "avatarRui": {
+        "type": "Avatar",
+        "props": {
+          "name": "Rui Costa",
+          "description": "Operations · away",
+          "tone": "warning"
+        },
+        "children": []
+      },
+      "avatarBot": {
+        "type": "Avatar",
+        "props": {
+          "name": "Books bot",
+          "emoji": "🤖",
+          "description": "Matches every night",
+          "size": "sm"
+        },
+        "children": []
+      },
+      "crew": {
+        "type": "AvatarGroup",
+        "props": {
+          "max": 4,
+          "label": "6 people closing November",
+          "people": [
+            {
+              "name": "Ana Silva",
+              "src": "https://api.dicebear.com/9.x/notionists/svg?seed=AnaSilva"
+            },
+            {
+              "name": "Rui Costa",
+              "src": "https://api.dicebear.com/9.x/notionists/svg?seed=RuiCosta"
+            },
+            {
+              "name": "Marta Lopes",
+              "src": "https://api.dicebear.com/9.x/notionists/svg?seed=MartaLopes"
+            },
+            {
+              "name": "Books bot",
+              "emoji": "🤖"
+            },
+            {
+              "name": "João Pereira"
+            },
+            {
+              "name": "Inês Martins"
+            }
+          ]
+        },
+        "children": []
+      },
+      "linksMenu": {
+        "type": "Dropdown",
+        "props": {
+          "label": "Open in",
+          "emoji": "🔗",
+          "items": [
+            {
+              "label": "Bank",
+              "url": "https://example.com/bank",
+              "icon": "banknote",
+              "description": "Statements and movements"
+            },
+            {
+              "label": "Invoices",
+              "url": "https://example.com/invoices",
+              "icon": "file-text"
+            },
+            {
+              "label": "Accountant",
+              "url": "https://example.com/accountant",
+              "emoji": "🧮",
+              "description": "Shared folder with Marta"
+            }
+          ]
+        },
+        "children": []
+      },
+      "iconsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧷 Icons",
+          "description": "One icon in a tinted square with a label, in every tone and size"
+        },
+        "children": [
+          "iconsGrid"
+        ]
+      },
+      "iconsGrid": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "iconBank",
+          "iconReceipts",
+          "iconDeadline",
+          "iconAudit",
+          "iconTeam",
+          "iconDone"
+        ]
+      },
+      "iconBank": {
+        "type": "Icon",
+        "props": {
+          "icon": "landmark",
+          "label": "Bank feeds",
+          "description": "Four accounts sync every night",
+          "tone": "info"
+        },
+        "children": []
+      },
+      "iconReceipts": {
+        "type": "Icon",
+        "props": {
+          "icon": "receipt",
+          "label": "Receipts",
+          "description": "Snap, upload, done",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "iconDeadline": {
+        "type": "Icon",
+        "props": {
+          "icon": "hourglass",
+          "label": "VAT due in 9 days",
+          "tone": "warning"
+        },
+        "children": []
+      },
+      "iconAudit": {
+        "type": "Icon",
+        "props": {
+          "icon": "stethoscope",
+          "label": "Health check",
+          "description": "Two documents need a look",
+          "tone": "danger",
+          "size": "sm"
+        },
+        "children": []
+      },
+      "iconTeam": {
+        "type": "Icon",
+        "props": {
+          "icon": "handshake",
+          "label": "Accountant",
+          "description": "Shared read-only access"
+        },
+        "children": []
+      },
+      "iconDone": {
+        "type": "Icon",
+        "props": {
+          "icon": "party-popper",
+          "label": "October closed",
+          "tone": "success",
+          "size": "lg"
+        },
+        "children": []
+      },
+      "htmlCard": {
+        "type": "Card",
+        "props": {
+          "title": "🧮 Tip calculator",
+          "description": "An Html block: custom HTML and JS inside a blocks page"
+        },
+        "children": [
+          "tipCalc"
+        ]
+      },
+      "tipCalc": {
+        "type": "Html",
+        "props": {
+          "title": "Tip calculator",
+          "html": "<div class=\"o-stack\"><label class=\"o-label\">Bill <input id=\"bill\" type=\"number\" value=\"42\" style=\"width:100px\"></label><label class=\"o-label\">Tip % <input id=\"tip\" type=\"range\" min=\"0\" max=\"25\" value=\"10\"></label><div class=\"o-value\" id=\"out\"></div></div><script>const f=()=>{const b=+bill.value,t=+tip.value;out.textContent=`€${(b*(1+t/100)).toFixed(2)} with ${t}% tip`};bill.oninput=tip.oninput=f;f()</script>"
+        }
+      }
+    },
+    "state": {
+      "tasks": [
+        {
+          "title": "Import statements",
+          "done": true,
+          "url": "https://example.com/docs/brief"
+        },
+        {
+          "title": "Review documents"
+        },
+        {
+          "title": "Send to the accountant"
+        }
+      ],
+      "emailOnClose": true,
+      "owner": "ana",
+      "invoiceStatus": "all"
+    }
+  }
+}

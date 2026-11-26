@@ -1,0 +1,11 @@
+.shape { vector-effect: non-scaling-stroke; fill: none; stroke: none; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; transition: fill var(--duration-considered) var(--ease-standard), stroke var(--duration-considered) var(--ease-standard); }
+.shape[data-tone="outline"] { fill: var(--surface); stroke: var(--foreground); }
+.shape[data-tone="tuck"] { fill: var(--surface); stroke: var(--border-strong); }
+.shape[data-tone="shade"] { fill: var(--surface-muted); stroke: var(--foreground); }
+.shape[data-tone="dot"] { fill: var(--foreground); stroke: transparent; }
+.shape[data-tone="ink"] { fill: var(--surface); stroke: var(--foreground); }
+.shape[data-tone="accent"] { fill: var(--surface); stroke: var(--foreground); }
+.shape[data-tone="warning"] { fill: var(--surface); stroke: var(--warning); }
+.shape:is([data-kind="stroke"], [data-kind="mark"])[data-tone] { fill: none; }
+
+@media (prefers-reduced-motion: reduce) { .shape { transition: none; } }

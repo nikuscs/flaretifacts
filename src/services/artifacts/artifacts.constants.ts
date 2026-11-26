@@ -1,0 +1,27 @@
+export const ARTIFACTS = {
+  storeName: 'main',
+  idAlphabet: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+  idLength: 10,
+  selfOrigin: 'https://self.internal',
+  htmlScripts: /<script\b[^>]*>[\s\S]*?<\/script>/gi,
+  htmlRelativeLinks: /(\s(?:href|src)=")\/(?!\/)/g,
+  rowSelect: `select a.id, v.title, a.emoji, a.kind, a.visibility, a.passcode_hash as passcodeHash, v.version, a.created_by as createdBy, a.created_at as createdAt, a.updated_at as updatedAt, v.spec
+    from artifacts a join artifact_versions v on v.artifact_id = a.id`,
+  versionsKept: 10,
+  listLimit: 500,
+  specBytesMax: 2_000_000,
+  depthMax: 32,
+  scopeSamples: 3,
+  emojiDefault: '📊',
+  viewPath: '/a/',
+  livePath: '/live/',
+  passcodeIterations: 100_000,
+  publicPaths: ['/a/', '/live/', '/rpc/artifacts/view', '/rpc/artifacts/stateSave', '/assets/', '/_next/', '/favicon.ico', '/apple-icon.png', '/manifest.webmanifest'],
+  mcpInstructions: [
+    'Artifacts are pages you publish for the owner and the people they share with: dashboards, reports, plans, checklists. Each has a link and stays up to date.',
+    'Before your first page, call artifacts_guide (how to build a beautiful page and keep it current), then examples_list and examples_get to start from a page close to what the person wants and artifacts_schema for the exact props of the blocks you use.',
+    'Check a spec with artifacts_validate, then artifacts_create and give the person the link. To change a page, read it with artifacts_get or artifacts_data, then artifacts_patch for small edits or artifacts_update to replace the data or the whole spec, with the version you read. Every reply about a page you created or changed ends with its link (url), so the person can open it.',
+    'For pictures (avatars, logos, photos, screenshots), create the page, upload each image with assets_upload (base64 or an https link) and use the url it returns in Image, Avatar or a DataTable avatar column.',
+    'Keep changing numbers in the page data (state) and bind blocks to them with { "$state": "/path" }, so updates only touch data. Never overwrite what people ticked or wrote on the page.',
+  ].join('\n\n'),
+};

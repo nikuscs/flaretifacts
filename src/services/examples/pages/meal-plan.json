@@ -1,0 +1,396 @@
+{
+  "name": "meal-plan",
+  "title": "Meals this week",
+  "emoji": "🥗",
+  "description": "A weekly plan with one tab per day (seven tabs), a shopping checklist that saves, and recipes in an accordion. Start here for weekly plans, schedules, routines and anything split by day.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "habits",
+          "tabsCard",
+          "row"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "23 to 29 November · cooking for two",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "Dinners at home",
+              "value": 6,
+              "suffix": "/7"
+            },
+            {
+              "label": "Groceries",
+              "value": {
+                "$state": "/groceries"
+              },
+              "prefix": "€",
+              "context": "estimated"
+            },
+            {
+              "label": "Vegetarian days",
+              "value": 3
+            },
+            {
+              "label": "Prep time",
+              "value": "5h 20",
+              "context": "total"
+            }
+          ]
+        },
+        "children": []
+      },
+      "tabsCard": {
+        "type": "Card",
+        "props": {
+          "title": "🍽️ Plan"
+        },
+        "children": [
+          "tabs"
+        ]
+      },
+      "tabs": {
+        "type": "Tabs",
+        "props": {
+          "tabs": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+          ]
+        },
+        "children": [
+          "dayMon",
+          "dayTue",
+          "dayWed",
+          "dayThu",
+          "dayFri",
+          "daySat",
+          "daySun"
+        ]
+      },
+      "dayMon": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Overnight oats",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Chicken caesar wrap",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Salmon, rice and greens",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "dayTue": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Greek yogurt and berries",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Lentil soup",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Veggie stir-fry with tofu",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "dayWed": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Eggs on toast",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Quinoa bowl",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Bacalhau à Brás",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "dayThu": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Smoothie",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Leftover bacalhau",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Chilli con carne",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "dayFri": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Overnight oats",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Sushi out",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Homemade pizza",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "daySat": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Pancakes",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "Market lunch",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Grilled sardines",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "daySun": {
+        "type": "List",
+        "props": {
+          "items": [
+            {
+              "title": "Brunch",
+              "meta": "🥐 Breakfast"
+            },
+            {
+              "title": "—",
+              "meta": "🥗 Lunch"
+            },
+            {
+              "title": "Roast chicken and potatoes",
+              "meta": "🍲 Dinner"
+            }
+          ]
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "shopCard",
+          "recipesCard"
+        ]
+      },
+      "shopCard": {
+        "type": "Card",
+        "props": {
+          "title": "🛒 Shopping list",
+          "description": "Tick as you shop"
+        },
+        "children": [
+          "shop"
+        ]
+      },
+      "shop": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/shopping"
+          }
+        },
+        "children": []
+      },
+      "recipesCard": {
+        "type": "Card",
+        "props": {
+          "title": "👩‍🍳 Recipes"
+        },
+        "children": [
+          "recipes"
+        ]
+      },
+      "recipes": {
+        "type": "Accordion",
+        "props": {
+          "items": [
+            {
+              "title": "Bacalhau à Brás",
+              "icon": "utensils"
+            },
+            {
+              "title": "Chilli con carne",
+              "icon": "utensils"
+            },
+            {
+              "title": "Overnight oats",
+              "icon": "coffee"
+            }
+          ]
+        },
+        "children": [
+          "r1",
+          "r2",
+          "r3"
+        ]
+      },
+      "r1": {
+        "type": "Markdown",
+        "props": {
+          "text": "**30 min · serves 2**\n\n1. Soak and shred 300 g salted cod.\n2. Fry 400 g matchstick potatoes and one sliced onion.\n3. Stir in the cod, then 4 beaten eggs off the heat.\n4. Finish with black olives and parsley."
+        },
+        "children": []
+      },
+      "r2": {
+        "type": "Markdown",
+        "props": {
+          "text": "**1 h · serves 4**\n\nBrown 500 g mince with onion, garlic, cumin and smoked paprika. Add chopped tomatoes, kidney beans and a square of dark chocolate. Simmer 40 minutes."
+        },
+        "children": []
+      },
+      "r3": {
+        "type": "Markdown",
+        "props": {
+          "text": "**5 min + overnight**\n\nMix 50 g oats, 120 ml milk, a spoon of chia and yogurt. Top with berries in the morning."
+        },
+        "children": []
+      },
+      "habits": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "habitVeg",
+          "habitFish",
+          "habitPizza"
+        ]
+      },
+      "habitVeg": {
+        "type": "Icon",
+        "props": {
+          "icon": "sprout",
+          "label": "Veggie twice",
+          "description": "Tuesday and Thursday",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "habitFish": {
+        "type": "Icon",
+        "props": {
+          "icon": "flame",
+          "label": "Fish on the grill",
+          "description": "Saturday sardines",
+          "tone": "warning"
+        },
+        "children": []
+      },
+      "habitPizza": {
+        "type": "Icon",
+        "props": {
+          "icon": "pizza",
+          "label": "Pizza Friday",
+          "description": "Dough on Thursday night",
+          "tone": "info"
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "groceries": 86,
+      "shopping": [
+        {
+          "title": "Salted cod 300 g"
+        },
+        {
+          "title": "Eggs (12)",
+          "done": true
+        },
+        {
+          "title": "Potatoes 1 kg"
+        },
+        {
+          "title": "Kidney beans"
+        },
+        {
+          "title": "Berries"
+        },
+        {
+          "title": "Oats",
+          "done": true
+        },
+        {
+          "title": "Sardines",
+          "description": "Saturday market"
+        }
+      ]
+    }
+  }
+}

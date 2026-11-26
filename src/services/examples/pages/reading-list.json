@@ -1,0 +1,729 @@
+{
+  "name": "reading-list",
+  "title": "Reading 2026",
+  "emoji": "📚",
+  "description": "A personal tracker: progress against a goal, tabs for what is being read, what was read (sortable, searchable) and what is next, genres, reading days and a favourite quote. Start here for books, films, courses, collections and habits.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "tabsCard",
+          "row",
+          "quoteCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Goal: 24 books this year",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "read",
+          "pages",
+          "goal"
+        ]
+      },
+      "read": {
+        "type": "Metric",
+        "props": {
+          "label": "Books read",
+          "value": {
+            "$state": "/stats/read"
+          },
+          "suffix": " / 24",
+          "change": "+3",
+          "context": "this month"
+        },
+        "children": []
+      },
+      "pages": {
+        "type": "Metric",
+        "props": {
+          "label": "Pages",
+          "value": {
+            "$state": "/stats/pages"
+          },
+          "context": "since January"
+        },
+        "children": []
+      },
+      "goal": {
+        "type": "Card",
+        "props": {
+          "title": "🏃 Pace"
+        },
+        "children": [
+          "pace"
+        ]
+      },
+      "pace": {
+        "type": "Sparkline",
+        "props": {
+          "label": "Minutes a day",
+          "value": "32",
+          "change": "+12%",
+          "data": {
+            "$state": "/stats/minutes"
+          }
+        },
+        "children": []
+      },
+      "tabsCard": {
+        "type": "Card",
+        "props": {},
+        "children": [
+          "tabs"
+        ]
+      },
+      "tabs": {
+        "type": "Tabs",
+        "props": {
+          "tabs": [
+            {
+              "label": "📖 Reading",
+              "count": 2
+            },
+            {
+              "label": "✅ Read",
+              "count": 5
+            },
+            {
+              "label": "🔖 Want to read",
+              "count": 3
+            }
+          ]
+        },
+        "children": [
+          "reading",
+          "readTable",
+          "want"
+        ]
+      },
+      "reading": {
+        "type": "Stack",
+        "props": {},
+        "children": [
+          "readingList"
+        ]
+      },
+      "readingList": {
+        "type": "DataTable",
+        "props": {
+          "search": false,
+          "columns": [
+            {
+              "key": "title",
+              "label": "Book"
+            },
+            {
+              "key": "author",
+              "label": "Author"
+            },
+            {
+              "key": "progress",
+              "label": "Progress",
+              "type": "progress"
+            }
+          ],
+          "rows": {
+            "$state": "/reading"
+          }
+        },
+        "children": []
+      },
+      "readTable": {
+        "type": "DataTable",
+        "props": {
+          "pageSize": 10,
+          "columns": [
+            {
+              "key": "title",
+              "label": "Book"
+            },
+            {
+              "key": "author",
+              "label": "Author"
+            },
+            {
+              "key": "genre",
+              "label": "Genre",
+              "type": "badge"
+            },
+            {
+              "key": "rating",
+              "label": "Rating",
+              "type": "number"
+            },
+            {
+              "key": "finished",
+              "label": "Finished",
+              "type": "date"
+            }
+          ],
+          "rows": {
+            "$state": "/read"
+          }
+        },
+        "children": []
+      },
+      "want": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/want"
+          }
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "genresCard",
+          "daysCard"
+        ]
+      },
+      "genresCard": {
+        "type": "Card",
+        "props": {
+          "title": "🏷️ Genres"
+        },
+        "children": [
+          "genres"
+        ]
+      },
+      "genres": {
+        "type": "RankedList",
+        "props": {
+          "unit": " books",
+          "rows": {
+            "$state": "/genres"
+          }
+        },
+        "children": []
+      },
+      "daysCard": {
+        "type": "Card",
+        "props": {
+          "title": "📆 Reading days"
+        },
+        "children": [
+          "heat"
+        ]
+      },
+      "heat": {
+        "type": "Heatmap",
+        "props": {
+          "days": {
+            "$state": "/days"
+          },
+          "caption": "Minutes read per day"
+        },
+        "children": []
+      },
+      "quoteCard": {
+        "type": "Card",
+        "props": {
+          "title": "💬 Favourite line so far"
+        },
+        "children": [
+          "quote"
+        ]
+      },
+      "quote": {
+        "type": "Quote",
+        "props": {
+          "text": "You do not rise to the level of your goals. You fall to the level of your systems.",
+          "author": "James Clear",
+          "source": "Atomic Habits"
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "stats": {
+        "read": 17,
+        "pages": 5480,
+        "minutes": [
+          20,
+          35,
+          25,
+          40,
+          30,
+          45,
+          32
+        ]
+      },
+      "reading": [
+        {
+          "title": "Project Hail Mary",
+          "author": "Andy Weir",
+          "progress": 64
+        },
+        {
+          "title": "Sapiens",
+          "author": "Yuval Noah Harari",
+          "progress": 31
+        }
+      ],
+      "read": [
+        {
+          "title": "The Midnight Library",
+          "author": "Matt Haig",
+          "genre": "Fiction",
+          "rating": 4,
+          "finished": "2026-03-13"
+        },
+        {
+          "title": "Atomic Habits",
+          "author": "James Clear",
+          "genre": "Self-help",
+          "rating": 5,
+          "finished": "2026-05-15"
+        },
+        {
+          "title": "Dune",
+          "author": "Frank Herbert",
+          "genre": "Sci-fi",
+          "rating": 5,
+          "finished": "2026-07-17"
+        },
+        {
+          "title": "The Pragmatic Programmer",
+          "author": "Hunt & Thomas",
+          "genre": "Tech",
+          "rating": 4,
+          "finished": "2026-09-10"
+        },
+        {
+          "title": "Thinking, Fast and Slow",
+          "author": "Daniel Kahneman",
+          "genre": "Psychology",
+          "rating": 4,
+          "finished": "2026-10-11"
+        }
+      ],
+      "want": [
+        {
+          "title": "Klara and the Sun — Kazuo Ishiguro"
+        },
+        {
+          "title": "Tomorrow, and Tomorrow, and Tomorrow — Gabrielle Zevin"
+        },
+        {
+          "title": "The Three-Body Problem — Liu Cixin"
+        }
+      ],
+      "genres": [
+        {
+          "label": "Sci-fi",
+          "value": 6
+        },
+        {
+          "label": "Fiction",
+          "value": 4
+        },
+        {
+          "label": "Self-help",
+          "value": 3
+        },
+        {
+          "label": "History",
+          "value": 2
+        },
+        {
+          "label": "Tech",
+          "value": 2
+        }
+      ],
+      "days": [
+        {
+          "date": "2026-08-21",
+          "value": 45
+        },
+        {
+          "date": "2026-08-22",
+          "value": 35
+        },
+        {
+          "date": "2026-08-23",
+          "value": 45
+        },
+        {
+          "date": "2026-08-24",
+          "value": 20
+        },
+        {
+          "date": "2026-08-25",
+          "value": 35
+        },
+        {
+          "date": "2026-08-26",
+          "value": 35
+        },
+        {
+          "date": "2026-08-27",
+          "value": 0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 35
+        },
+        {
+          "date": "2026-08-29",
+          "value": 0
+        },
+        {
+          "date": "2026-08-30",
+          "value": 35
+        },
+        {
+          "date": "2026-08-31",
+          "value": 60
+        },
+        {
+          "date": "2026-09-01",
+          "value": 60
+        },
+        {
+          "date": "2026-09-02",
+          "value": 0
+        },
+        {
+          "date": "2026-09-03",
+          "value": 45
+        },
+        {
+          "date": "2026-09-04",
+          "value": 35
+        },
+        {
+          "date": "2026-09-05",
+          "value": 25
+        },
+        {
+          "date": "2026-09-06",
+          "value": 0
+        },
+        {
+          "date": "2026-09-07",
+          "value": 0
+        },
+        {
+          "date": "2026-09-08",
+          "value": 20
+        },
+        {
+          "date": "2026-09-09",
+          "value": 0
+        },
+        {
+          "date": "2026-09-10",
+          "value": 0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 25
+        },
+        {
+          "date": "2026-09-12",
+          "value": 25
+        },
+        {
+          "date": "2026-09-13",
+          "value": 0
+        },
+        {
+          "date": "2026-09-14",
+          "value": 10
+        },
+        {
+          "date": "2026-09-15",
+          "value": 25
+        },
+        {
+          "date": "2026-09-16",
+          "value": 10
+        },
+        {
+          "date": "2026-09-17",
+          "value": 45
+        },
+        {
+          "date": "2026-09-18",
+          "value": 25
+        },
+        {
+          "date": "2026-09-19",
+          "value": 45
+        },
+        {
+          "date": "2026-09-20",
+          "value": 10
+        },
+        {
+          "date": "2026-09-21",
+          "value": 60
+        },
+        {
+          "date": "2026-09-22",
+          "value": 35
+        },
+        {
+          "date": "2026-09-23",
+          "value": 0
+        },
+        {
+          "date": "2026-09-24",
+          "value": 25
+        },
+        {
+          "date": "2026-09-25",
+          "value": 0
+        },
+        {
+          "date": "2026-09-26",
+          "value": 10
+        },
+        {
+          "date": "2026-09-27",
+          "value": 45
+        },
+        {
+          "date": "2026-09-28",
+          "value": 0
+        },
+        {
+          "date": "2026-09-29",
+          "value": 25
+        },
+        {
+          "date": "2026-09-30",
+          "value": 0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 25
+        },
+        {
+          "date": "2026-10-03",
+          "value": 0
+        },
+        {
+          "date": "2026-10-04",
+          "value": 20
+        },
+        {
+          "date": "2026-10-05",
+          "value": 0
+        },
+        {
+          "date": "2026-10-06",
+          "value": 25
+        },
+        {
+          "date": "2026-10-07",
+          "value": 0
+        },
+        {
+          "date": "2026-10-08",
+          "value": 60
+        },
+        {
+          "date": "2026-10-09",
+          "value": 0
+        },
+        {
+          "date": "2026-10-10",
+          "value": 35
+        },
+        {
+          "date": "2026-10-11",
+          "value": 45
+        },
+        {
+          "date": "2026-10-12",
+          "value": 25
+        },
+        {
+          "date": "2026-10-13",
+          "value": 10
+        },
+        {
+          "date": "2026-10-14",
+          "value": 0
+        },
+        {
+          "date": "2026-10-15",
+          "value": 20
+        },
+        {
+          "date": "2026-10-16",
+          "value": 0
+        },
+        {
+          "date": "2026-10-17",
+          "value": 10
+        },
+        {
+          "date": "2026-10-18",
+          "value": 25
+        },
+        {
+          "date": "2026-10-19",
+          "value": 0
+        },
+        {
+          "date": "2026-10-20",
+          "value": 10
+        },
+        {
+          "date": "2026-10-21",
+          "value": 20
+        },
+        {
+          "date": "2026-10-22",
+          "value": 25
+        },
+        {
+          "date": "2026-10-23",
+          "value": 25
+        },
+        {
+          "date": "2026-10-24",
+          "value": 20
+        },
+        {
+          "date": "2026-10-25",
+          "value": 25
+        },
+        {
+          "date": "2026-10-26",
+          "value": 60
+        },
+        {
+          "date": "2026-10-27",
+          "value": 10
+        },
+        {
+          "date": "2026-10-28",
+          "value": 25
+        },
+        {
+          "date": "2026-10-29",
+          "value": 35
+        },
+        {
+          "date": "2026-10-30",
+          "value": 0
+        },
+        {
+          "date": "2026-10-31",
+          "value": 25
+        },
+        {
+          "date": "2026-11-01",
+          "value": 0
+        },
+        {
+          "date": "2026-11-02",
+          "value": 0
+        },
+        {
+          "date": "2026-11-03",
+          "value": 0
+        },
+        {
+          "date": "2026-11-04",
+          "value": 20
+        },
+        {
+          "date": "2026-11-05",
+          "value": 60
+        },
+        {
+          "date": "2026-11-06",
+          "value": 20
+        },
+        {
+          "date": "2026-11-07",
+          "value": 60
+        },
+        {
+          "date": "2026-11-08",
+          "value": 0
+        },
+        {
+          "date": "2026-11-09",
+          "value": 45
+        },
+        {
+          "date": "2026-11-10",
+          "value": 60
+        },
+        {
+          "date": "2026-11-11",
+          "value": 45
+        },
+        {
+          "date": "2026-11-12",
+          "value": 25
+        },
+        {
+          "date": "2026-11-13",
+          "value": 20
+        },
+        {
+          "date": "2026-11-14",
+          "value": 20
+        },
+        {
+          "date": "2026-11-15",
+          "value": 35
+        },
+        {
+          "date": "2026-11-16",
+          "value": 20
+        },
+        {
+          "date": "2026-11-17",
+          "value": 10
+        },
+        {
+          "date": "2026-11-18",
+          "value": 45
+        }
+      ]
+    }
+  }
+}

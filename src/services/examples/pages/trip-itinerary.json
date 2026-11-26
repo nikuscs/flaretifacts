@@ -1,0 +1,455 @@
+{
+  "name": "trip-itinerary",
+  "title": "Japan, 12 days",
+  "emoji": "🧳",
+  "description": "A trip everyone can follow: travellers, a countdown, then tabs for the day-by-day agenda, a bookings table, a packing checklist that saves, the budget and files. Start here for trips, events and anything with dates and bookings.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "numbers",
+          "tipsCard",
+          "countdownCard",
+          "tabsCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "travellers"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Tokyo → Hakone → Kyoto → Osaka · 4 to 15 April 2027",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "travellers": {
+        "type": "People",
+        "props": {
+          "layout": "stack",
+          "people": [
+            {
+              "name": "Liam",
+              "status": "Organiser"
+            },
+            {
+              "name": "Rita"
+            },
+            {
+              "name": "Ana"
+            },
+            {
+              "name": "Miguel"
+            }
+          ]
+        },
+        "children": []
+      },
+      "numbers": {
+        "type": "KeyNumbers",
+        "props": {
+          "items": [
+            {
+              "label": "Days",
+              "value": 12
+            },
+            {
+              "label": "Cities",
+              "value": 4
+            },
+            {
+              "label": "Budget",
+              "value": {
+                "$state": "/budget/total"
+              },
+              "prefix": "€",
+              "context": "for four"
+            },
+            {
+              "label": "Spent so far",
+              "value": {
+                "$state": "/budget/spent"
+              },
+              "prefix": "€",
+              "context": "flights and hotels"
+            }
+          ]
+        },
+        "children": []
+      },
+      "countdownCard": {
+        "type": "Card",
+        "props": {},
+        "children": [
+          "countdown"
+        ]
+      },
+      "countdown": {
+        "type": "Countdown",
+        "props": {
+          "to": "2027-04-04T11:30:00+01:00",
+          "title": "Flight TP 1250 leaves Lisbon in",
+          "doneText": "Enjoy Japan! 🎌"
+        },
+        "children": []
+      },
+      "tabsCard": {
+        "type": "Card",
+        "props": {},
+        "children": [
+          "tabs"
+        ]
+      },
+      "tabs": {
+        "type": "Tabs",
+        "props": {
+          "tabs": [
+            {
+              "label": "🗾 Itinerary"
+            },
+            {
+              "label": "🎫 Bookings",
+              "count": 5
+            },
+            {
+              "label": "🎒 Packing"
+            },
+            {
+              "label": "💴 Budget"
+            },
+            {
+              "label": "📁 Files"
+            }
+          ]
+        },
+        "children": [
+          "agenda",
+          "bookings",
+          "packing",
+          "budget",
+          "files"
+        ]
+      },
+      "agenda": {
+        "type": "Agenda",
+        "props": {
+          "events": {
+            "$state": "/itinerary"
+          }
+        },
+        "children": []
+      },
+      "bookings": {
+        "type": "DataTable",
+        "props": {
+          "search": false,
+          "pageSize": 10,
+          "columns": [
+            {
+              "key": "what",
+              "label": "Booking"
+            },
+            {
+              "key": "when",
+              "label": "When",
+              "type": "date"
+            },
+            {
+              "key": "where",
+              "label": "Where"
+            },
+            {
+              "key": "status",
+              "label": "Status",
+              "type": "badge",
+              "tones": {
+                "✅ Confirmed": "success",
+                "⏳ To book": "warning",
+                "💳 Paid": "info"
+              }
+            },
+            {
+              "key": "price",
+              "label": "Price",
+              "type": "money",
+              "currency": "EUR"
+            }
+          ],
+          "rows": {
+            "$state": "/bookings"
+          }
+        },
+        "children": []
+      },
+      "packing": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/packing"
+          }
+        },
+        "children": []
+      },
+      "budget": {
+        "type": "SplitBar",
+        "props": {
+          "title": "Budget by category",
+          "totalLabel": "Planned",
+          "unit": " €",
+          "segments": {
+            "$state": "/budget/split"
+          }
+        },
+        "children": []
+      },
+      "files": {
+        "type": "Files",
+        "props": {
+          "columns": "2",
+          "items": [
+            {
+              "title": "Flight tickets",
+              "url": "https://example.com/tickets.pdf",
+              "kind": "pdf",
+              "meta": "2 pages"
+            },
+            {
+              "title": "JR Pass voucher",
+              "url": "https://example.com/jr.pdf",
+              "kind": "pdf"
+            },
+            {
+              "title": "Trip budget",
+              "url": "https://example.com/budget",
+              "kind": "sheet",
+              "description": "Shared with everyone"
+            },
+            {
+              "title": "Tokyo food map",
+              "url": "https://maps.example.com/tokyo",
+              "kind": "link"
+            }
+          ]
+        },
+        "children": []
+      },
+      "tipsCard": {
+        "type": "Card",
+        "props": {
+          "title": "📌 Good to know"
+        },
+        "children": [
+          "tips"
+        ]
+      },
+      "tips": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "tipRail",
+          "tipWifi",
+          "tipRain"
+        ]
+      },
+      "tipRail": {
+        "type": "Icon",
+        "props": {
+          "icon": "train",
+          "label": "JR Pass",
+          "description": "Activate at Narita on day 1",
+          "tone": "info"
+        },
+        "children": []
+      },
+      "tipWifi": {
+        "type": "Icon",
+        "props": {
+          "icon": "wifi",
+          "label": "Pocket wifi",
+          "description": "Pick up at arrivals, return at KIX",
+          "tone": "success"
+        },
+        "children": []
+      },
+      "tipRain": {
+        "type": "Icon",
+        "props": {
+          "icon": "umbrella",
+          "label": "April showers",
+          "description": "Pack a light rain jacket",
+          "tone": "warning"
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "budget": {
+        "total": 9800,
+        "spent": 5240,
+        "split": [
+          {
+            "label": "Flights",
+            "value": 3600
+          },
+          {
+            "label": "Hotels",
+            "value": 2900
+          },
+          {
+            "label": "Food",
+            "value": 1600
+          },
+          {
+            "label": "Trains",
+            "value": 1100
+          },
+          {
+            "label": "Fun",
+            "value": 600
+          }
+        ]
+      },
+      "itinerary": [
+        {
+          "date": "2027-04-04",
+          "time": "11:30",
+          "title": "Fly Lisbon → Tokyo",
+          "location": "LIS → HND",
+          "description": "Change in Frankfurt",
+          "tone": "info"
+        },
+        {
+          "date": "2027-04-05",
+          "time": "15:00",
+          "title": "Check in, Shinjuku",
+          "location": "Hotel Gracery"
+        },
+        {
+          "date": "2027-04-06",
+          "time": "09:00",
+          "title": "Tsukiji outer market, teamLab",
+          "location": "Tokyo"
+        },
+        {
+          "date": "2027-04-08",
+          "time": "10:00",
+          "title": "Romancecar to Hakone",
+          "location": "Shinjuku station",
+          "description": "Onsen ryokan, kaiseki dinner"
+        },
+        {
+          "date": "2027-04-09",
+          "time": "08:30",
+          "title": "Lake Ashi and ropeway",
+          "location": "Hakone"
+        },
+        {
+          "date": "2027-04-10",
+          "time": "11:00",
+          "title": "Shinkansen to Kyoto",
+          "location": "Odawara → Kyoto",
+          "tone": "info"
+        },
+        {
+          "date": "2027-04-11",
+          "time": "06:30",
+          "title": "Fushimi Inari at sunrise",
+          "location": "Kyoto",
+          "description": "Before the crowds"
+        },
+        {
+          "date": "2027-04-13",
+          "time": "10:00",
+          "title": "Nara day trip",
+          "location": "Nara"
+        },
+        {
+          "date": "2027-04-14",
+          "time": "12:00",
+          "title": "Osaka street food",
+          "location": "Dotonbori"
+        },
+        {
+          "date": "2027-04-15",
+          "time": "14:00",
+          "title": "Fly home",
+          "location": "KIX → LIS",
+          "tone": "info"
+        }
+      ],
+      "bookings": [
+        {
+          "what": "Flights TAP + ANA",
+          "when": "2027-04-04",
+          "where": "LIS → HND",
+          "status": "💳 Paid",
+          "price": 3600
+        },
+        {
+          "what": "Hotel Gracery Shinjuku",
+          "when": "2027-04-05",
+          "where": "Tokyo",
+          "status": "✅ Confirmed",
+          "price": 1080
+        },
+        {
+          "what": "Ryokan Hakone",
+          "when": "2027-04-08",
+          "where": "Hakone",
+          "status": "✅ Confirmed",
+          "price": 560
+        },
+        {
+          "what": "Machiya house",
+          "when": "2027-04-10",
+          "where": "Kyoto",
+          "status": "⏳ To book",
+          "price": 980
+        },
+        {
+          "what": "JR Pass (4)",
+          "when": "2027-04-08",
+          "where": "Online",
+          "status": "⏳ To book",
+          "price": 1100
+        }
+      ],
+      "packing": [
+        {
+          "title": "Passports",
+          "done": true
+        },
+        {
+          "title": "JR Pass vouchers"
+        },
+        {
+          "title": "Pocket wifi"
+        },
+        {
+          "title": "Comfortable shoes",
+          "done": true
+        },
+        {
+          "title": "Cash in yen",
+          "description": "Many places are cash only"
+        }
+      ]
+    }
+  }
+}

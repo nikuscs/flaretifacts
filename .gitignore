@@ -1,0 +1,19 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.*
+
+.next/
+.vinext/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.wrangler/
+.dev.vars
+.prod.vars
+
+# Linked by bun run agents:sync
+/CLAUDE.md
+.claude/agents/
+.claude/skills/

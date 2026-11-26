@@ -1,0 +1,304 @@
+{
+  "name": "incident-report",
+  "title": "Checkout errors, 18 Nov",
+  "emoji": "🚨",
+  "description": "An incident or status report: state per system, impact numbers, the error graph, a timeline, the code fix and follow-ups people tick. Start here for incidents, post-mortems, status pages and change logs.",
+  "spec": {
+    "root": "page",
+    "elements": {
+      "page": {
+        "type": "Stack",
+        "props": {
+          "gap": "lg"
+        },
+        "children": [
+          "head",
+          "statusRow",
+          "row",
+          "timelineCard",
+          "fixCard",
+          "postmortemCard"
+        ]
+      },
+      "head": {
+        "type": "Stack",
+        "props": {
+          "gap": "sm"
+        },
+        "children": [
+          "subtitle",
+          "badges"
+        ]
+      },
+      "subtitle": {
+        "type": "Text",
+        "props": {
+          "text": "Incident report · 42 minutes · resolved",
+          "variant": "muted"
+        },
+        "children": []
+      },
+      "badges": {
+        "type": "Stack",
+        "props": {
+          "direction": "horizontal",
+          "gap": "sm"
+        },
+        "children": [
+          "sev",
+          "resolved"
+        ]
+      },
+      "sev": {
+        "type": "Badge",
+        "props": {
+          "text": "🚨 Sev 2",
+          "variant": "warning"
+        },
+        "children": []
+      },
+      "resolved": {
+        "type": "Badge",
+        "props": {
+          "text": "✅ Resolved",
+          "variant": "success"
+        },
+        "children": []
+      },
+      "statusRow": {
+        "type": "Grid",
+        "props": {
+          "columns": "3"
+        },
+        "children": [
+          "st1",
+          "st2",
+          "st3"
+        ]
+      },
+      "st1": {
+        "type": "Status",
+        "props": {
+          "label": "Checkout",
+          "state": "success",
+          "description": "Healthy since 10:54"
+        },
+        "children": []
+      },
+      "st2": {
+        "type": "Status",
+        "props": {
+          "label": "Payments provider",
+          "state": "success",
+          "description": "No errors"
+        },
+        "children": []
+      },
+      "st3": {
+        "type": "Status",
+        "props": {
+          "label": "Order emails",
+          "state": "destructive",
+          "description": "68 to resend"
+        },
+        "children": []
+      },
+      "row": {
+        "type": "Grid",
+        "props": {
+          "columns": "2"
+        },
+        "children": [
+          "impactCard",
+          "errorsCard"
+        ]
+      },
+      "impactCard": {
+        "type": "Card",
+        "props": {
+          "title": "💥 Impact"
+        },
+        "children": [
+          "impact"
+        ]
+      },
+      "impact": {
+        "type": "KeyValue",
+        "props": {
+          "items": [
+            {
+              "label": "Started",
+              "value": "10:12"
+            },
+            {
+              "label": "Resolved",
+              "value": "10:54"
+            },
+            {
+              "label": "Failed checkouts",
+              "value": 214
+            },
+            {
+              "label": "Lost revenue",
+              "value": "≈ €9,300"
+            },
+            {
+              "label": "Customers emailed",
+              "value": "146 of 214"
+            }
+          ]
+        },
+        "children": []
+      },
+      "errorsCard": {
+        "type": "Card",
+        "props": {
+          "title": "📉 Errors per minute"
+        },
+        "children": [
+          "errors"
+        ]
+      },
+      "errors": {
+        "type": "LineChart",
+        "props": {
+          "x": "time",
+          "series": [
+            {
+              "key": "errors",
+              "label": "5xx"
+            }
+          ],
+          "data": [
+            {
+              "time": "10:00",
+              "errors": 0
+            },
+            {
+              "time": "10:10",
+              "errors": 4
+            },
+            {
+              "time": "10:20",
+              "errors": 38
+            },
+            {
+              "time": "10:30",
+              "errors": 41
+            },
+            {
+              "time": "10:40",
+              "errors": 36
+            },
+            {
+              "time": "10:50",
+              "errors": 9
+            },
+            {
+              "time": "11:00",
+              "errors": 0
+            }
+          ]
+        },
+        "children": []
+      },
+      "timelineCard": {
+        "type": "Card",
+        "props": {
+          "title": "🕒 What happened"
+        },
+        "children": [
+          "timeline"
+        ]
+      },
+      "timeline": {
+        "type": "Timeline",
+        "props": {
+          "label": "Incident timeline",
+          "events": [
+            {
+              "day": "18 Nov",
+              "time": "10:12",
+              "actor": "Monitoring",
+              "title": "alerted on checkout 5xx",
+              "tone": "danger"
+            },
+            {
+              "day": "18 Nov",
+              "time": "10:19",
+              "actor": "Ana",
+              "title": "found the failing tax lookup",
+              "meta": "Deploy 4f2c at 10:05"
+            },
+            {
+              "day": "18 Nov",
+              "time": "10:31",
+              "actor": "Ana",
+              "title": "rolled back the deploy",
+              "tone": "success"
+            },
+            {
+              "day": "18 Nov",
+              "time": "10:54",
+              "actor": "Liam",
+              "title": "confirmed checkout healthy",
+              "tone": "success",
+              "detail": "Error rate back to 0 for 15 minutes; incident closed."
+            }
+          ]
+        },
+        "children": []
+      },
+      "fixCard": {
+        "type": "Card",
+        "props": {
+          "title": "🛠️ The fix"
+        },
+        "children": [
+          "code"
+        ]
+      },
+      "code": {
+        "type": "Code",
+        "props": {
+          "language": "ts",
+          "filename": "src/checkout/tax.ts",
+          "code": "export async function taxRate(country: string) {\n  const rate = await rates.get(country);\n\n  // The new provider returns null for EU countries without VAT IDs.\n  return rate ?? DEFAULT_RATES[country] ?? 0;\n}"
+        },
+        "children": []
+      },
+      "postmortemCard": {
+        "type": "Card",
+        "props": {
+          "title": "📋 Follow-ups"
+        },
+        "children": [
+          "followups"
+        ]
+      },
+      "followups": {
+        "type": "Checklist",
+        "props": {
+          "items": {
+            "$bindState": "/followups"
+          }
+        },
+        "children": []
+      }
+    },
+    "state": {
+      "followups": [
+        {
+          "title": "Resend 68 order emails"
+        },
+        {
+          "title": "Add a contract test for the tax provider"
+        },
+        {
+          "title": "Alert on checkout errors above 1%",
+          "done": true
+        }
+      ]
+    }
+  }
+}
