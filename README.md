@@ -2,6 +2,10 @@
 
 > Shareable pages that AI agents publish over MCP — reports, charts, checklists and plans on your own Cloudflare domain.
 
+![A page with key numbers, metric cards and a cash flow chart](docs/screenshots/overview.png)
+
+![A data table with search, filters and status badges, above health, storage and month close cards](docs/screenshots/table.png)
+
 An agent calls one MCP tool with a title and a spec and gets back a link. The spec is either a tree of blocks (charts, tables, checklists, notes, markdown and more, rendered with the Arc UI look) or a sandboxed HTML page. What people change on the page, such as ticked tasks or notes, is saved with it, every change by an agent is a new version, and open pages update live. A link can be public, private to the signed-in owner, or behind a passcode.
 
 ## ✨ Features
